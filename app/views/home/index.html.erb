@@ -1,0 +1,15 @@
+
+<%# link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+
+<div class="row-fluid">
+
+  <div class="col-md-2" style="width: 15%">
+    <%= render :partial => 'adm_left' %>
+  </div>
+
+  <div class="col-md-10" style="width: 85%" id="right_partial">
+    <%# render :template => 'home/category_list', :layout => false %>
+    <%= @partial.html_safe %>
+  </div>
+
+</div>

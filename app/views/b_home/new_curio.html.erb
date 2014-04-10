@@ -1,0 +1,46 @@
+
+
+選擇類別： <%= select("custom_new", "category_id", @categorys_option,{}, {:id => "category_select"}) %>
+
+
+<div style="width: 85%; margin-top: 30px" id="r_bottom_partial">
+  <%# render :template => 'home/category_list', :layout => false %>
+  <%= @view_string.html_safe %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+  $(function(){
+      <%= @default_format %>
+
+  });
+
+  $("#category_select").change(function(){
+      $.ajax({
+          url: "/b_home/get_category_view",
+          type: 'POST',
+          data:  {object_id:$(this).val()},
+          cache: false,
+          success: function(response){
+              $("#r_bottom_partial").html(response.partial);
+          },
+          error: function(){
+              alert('oops! 出現錯誤了!');
+          }
+      });
+  });
+</script>
+
+
+

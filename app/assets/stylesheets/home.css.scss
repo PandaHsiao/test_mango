@@ -1,0 +1,201 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+/*
+*= require bootstrap
+*= require kendo/kendo.common.min
+*= require kendo/kendo.blueopal.min
+*/
+
+.obj_area {
+  margin-bottom: 20px;
+  padding: 10px 5px 10px 10px;
+  border: #c0c0c0 3px ridge;
+  position: relative;
+}
+
+.obj_title {
+  color: grey;
+  font-size: 18px;
+}
+
+.obj_add_btn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 18px;
+}
+
+.obj_ok_btn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 18px;
+}
+
+.obj_edit_btn {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 18px;
+}
+
+.obj_create_btn {
+  font-size: 18px;
+  margin-bottom: 50px;
+  margin-left: 400px;
+}
+
+.obj_delete_btn {
+  position: absolute;
+  right: 10px;
+  top: 0px;
+  font-size: 22px;
+}
+
+.obj_delete_btn:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.delete_tip_btn {
+  position: absolute;
+  top: -3px;
+  font-size: 18px;
+  color: red;
+}
+
+.delete_tip_btn:hover {
+  color: red;
+  cursor: pointer;
+}
+
+.checkbox_delete {
+  font-size: 14px;
+  color: gray;
+}
+
+.radio_delete {
+  font-size: 14px;
+  color: gray;
+}
+
+.obj_item {
+  margin-bottom: 20px;
+  padding: 10px 5px 10px 10px;
+  border: #c0c0c0 3px ridge;
+  width: 500px;
+  position: relative;
+  min-height: 65px;
+}
+
+.obj_item:hover {
+  cursor: pointer;
+}
+
+.obj_table {
+  display: table-row;
+}
+
+.obj_cell {
+  display: table-cell;
+}
+
+#tip_sortable {
+  color: saddlebrown;
+  border: transparent 1px solid;
+  position: relative;
+}
+
+/////////////////////////////////////////////////////////////
+
+#left_sidebar {
+  margin-top: 60px;
+  border: 2px solid #E0E0E0;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin-bottom: 8px;
+  //background-color: rgb(240,240,240)
+}
+
+#left_sidebar > a {
+  display: block;
+  font-size: 16px;
+  line-height: 35px;
+  text-decoration: none;
+  margin-top: 5px;
+  color: #444444;
+}
+
+//#left_sidebar:a {
+//  display: block;
+//  font-size: 16px;
+//  line-height: 35px;
+//  text-decoration: none;
+//  margin-top: 5px;
+//}
+
+//#left_sidebar > a[name='ti'] {
+//  text-decoration: none;
+//  color: #444444;
+//}
+
+#left_sidebar > a:hover {
+  color: #000000;
+  cursor: pointer;
+}
+
+//#left_sidebar a[name='ti']:hover {
+//  color: #000000;
+//}
+//
+//#left_sidebar a:hover {
+//  cursor: pointer;
+//}
+
+#left_sidebar > a.now {
+  color: #ac381e;
+}
+
+#left_sidebar > a.now:hover {
+  color: #cc0000;
+}
+
+//#left_sidebar a:before {
+//  content: '• ';
+//}
+
+#left_sidebar .now:focus {
+  //color: #7F1700    // 222  34 26
+  color: rgb(222,34,26);
+}
+
+/////////////////////////////////////////////////////////////
+
+.sub_choice {
+  border: 1px solid #E0E0E0;
+  width: 90px;
+  text-align: center;
+  overflow: hidden;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+.sub_choice .now {
+  background-color: #7f5050;
+  color: #FFFFFF;
+}
+
+.sub_choice a {
+  cursor: pointer;
+  color: #000000;
+  display: block;
+  border: 1px solid rgb(190,190,190);
+}
+
+
+
+
+

@@ -1,0 +1,48 @@
+<% self.formats = [:json, :html] %>
+
+<h4></h4>
+<h4>yo~  所有類別都在這裡喔~<span style="margin-left: 20px;color:red">提醒您~  編輯類別請特別小心~</span></h4>
+
+<input type="button" class="new_category btn btn-danger" style="font-size: 18px; border: #ac381e;margin-bottom: 8px" id="new_category" value="新增類別">
+</br>
+
+
+<table style="border: #E0E0E0 1px solid;display: inline-block;margin-top: 2px">
+  <% @categorys.each_with_index do |x, index| %>
+      <% if index % 2 == 1%>
+          <tr style="font-size: 20px;min-width: 600px; background-color: #eaf4f9; padding: 10px 15px 10px 15px;line-height: 32px">
+
+            <td style="width: 50%"><%= x.name %></td>
+            <td style="width: 20%">
+              <% if x.status.blank? || x.status == '0' %>
+                未啟用
+              <% end %>
+            </td>
+
+            <td style="width:15% ;margin-top: -3px"><input type="button" class="category_edit_btn btn btn-primary" style="font-size: 18px" value="編輯" data-value="<%= x.object_id %>"></td>
+            <td style="width:15%"><input type="button" class="category_open_btn btn btn-primary" style="font-size: 18px" value="啟用" data-value="<%= x.object_id %>"></td>
+          </tr>
+      <% else %>
+          <tr style="font-size: 20px;min-width: 600px; padding: 10px 15px 10px 15px;line-height: 32px">
+            <td style="width: 50%"><%= x.name %></td>
+            <td style="width: 20%">
+              <% if x.status.blank? || x.status == '0' %>
+                未啟用
+              <% end %>
+            </td>
+            <td style="width:15% ;margin-top: -3px"><input type="button" class="category_edit_btn btn btn-primary" style="font-size: 18px" value="編輯" data-value="<%= x.object_id %>"></td>
+            <td style="width:15%"><input type="button" class="category_open_btn btn btn-primary" style="font-size: 18px" value="啟用" data-value="<%= x.object_id %>"></td>
+          </tr>
+      <% end %>
+  <% end %>
+</table>
+
+<script>
+
+    $(".category_edit_btn").click(function(){
+        alert($(this).data('value'))
+    });
+
+
+</script>
+
