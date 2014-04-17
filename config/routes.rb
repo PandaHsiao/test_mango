@@ -1,6 +1,5 @@
 TestMongo::Application.routes.draw do
 
-  get "b_home/index"
   devise_for :users
 
   #devise_for :users , :controllers => { :omniauth_callbacks => "omniauth_callbacks", confirmations: 'confirmations', :registrations => 'registrations', :passwords => 'passwords' }
@@ -34,7 +33,8 @@ TestMongo::Application.routes.draw do
   scope :format => true, :constraints => { :format => 'json' } do
     get  'home/index'
     get  'home/create_category'
-    get  'b_home/new_curio'
+    get  'home/new_curio'
+    post 'home/get_category_view'
   end
 
   get  'home/index'
@@ -49,9 +49,13 @@ TestMongo::Application.routes.draw do
 
   get  'home/delete_category'
 
+  get  'home/new_curio'
+
   #==============================================================
   get  'b_home/index'
-  get  'b_home/new_curio'
-  post 'b_home/get_category_view'
+
+  #==============================================================
+
+
 
 end

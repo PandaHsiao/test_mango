@@ -11,24 +11,16 @@
 
 
 
-
-
-
-
-
-
-
-
 <script>
 
   $(function(){
-      <%= @default_format %>
+      <%# @default_format %>
 
   });
 
   $("#category_select").change(function(){
       $.ajax({
-          url: "/b_home/get_category_view",
+          url: "/home/get_category_view.json",
           type: 'POST',
           data:  {object_id:$(this).val()},
           cache: false,

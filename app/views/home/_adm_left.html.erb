@@ -7,10 +7,10 @@
     <a id="sub_category_create" data-value="/home/create_category" style="font-size: 16px;letter-spacing: 1px">新增類別</a>
   </div>
 
-  <a id="ti2" name="ti" data-value="/b_home/new_curio" style="font-size: 18px;letter-spacing: 1px">• 前台-類別</a>
+  <a id="ti2" name="ti" data-value="/home/new_curio" style="font-size: 18px;letter-spacing: 1px">• 前台-類別</a>
   <div id="ti2_sub" class="sub_choice" style="height: 0;border-width: 0">
-    <a id="sub_new_curio" data-value="/b_home/new_curio" style="font-size: 16px;letter-spacing: 1px">新增項目</a>
-    <a id="sub_res_img"  data-value="/b_home/new_curio" style="font-size: 16px;letter-spacing: 1px">新增項目</a>
+    <a id="sub_new_curio" data-value="/home/new_curio" style="font-size: 16px;letter-spacing: 1px">新增項目</a>
+    <a id="sub_res_img"  data-value="/home/new_curio" style="font-size: 16px;letter-spacing: 1px">新增項目</a>
   </div>
 
 </div>
@@ -60,23 +60,23 @@
 
     $("#ti2").click(function(){
         var t = $(this);
-        $.get('/b_home/new_curio.json').done(function(response){
+        $.get('/home/new_curio.json').done(function(response){
             $("#ti2_sub a.now").removeClass('now');
             t.addClass('now')
             $("#sub_new_curio").addClass('now');
-            var state = {url:'/b_home/new_curio'};
-            window.history.pushState(state,'', '/b_home/new_curio');
+            var state = {url:'/home/new_curio'};
+            window.history.pushState(state,'', '/home/new_curio');
             $("#right_partial").html(response.partial);
         }).fail(function(){ alert('oops! 出現錯誤了!') });
     });
 
     $("#sub_new_curio").click(function(){
         var t = $(this);
-        $.get('/b_home/new_curio.json').done(function(response){
+        $.get('/home/new_curio.json').done(function(response){
             $("#ti2_sub a.now").removeClass('now');
             t.addClass('now')
-            var state = {url:'/b_home/new_curio'};
-            window.history.pushState(state,'', '/b_home/new_curio');
+            var state = {url:'/home/new_curio'};
+            window.history.pushState(state,'', '/home/new_curio');
             $("#right_partial").html(response.partial);
         }).fail(function(){ alert('oops! 出現錯誤了!') });
     });
