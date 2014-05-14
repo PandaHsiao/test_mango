@@ -1,19 +1,6 @@
 class HomeController < ApplicationController
   layout 'home'
 
-  def index
-    @categorys = CategoryColumn.all.entries
-    respond_to do |format|
-      format.html {
-        @partial = render_to_string('home/category_list', :layout => false)
-        render :template  => 'home/index'
-      }
-      format.json {
-        render json: {:partial => render_to_string('home/category_list', :layout => false,:locals => { :categorys => @categorys }, :formats=>[:html]) } , :status => 200
-      }
-    end
-  end
-
   def test_category
     #(1..10).each do |x|
     #  c = Category.new
@@ -39,7 +26,19 @@ class HomeController < ApplicationController
     xx.each do |c|
       c.destroy
     end
+  end
 
+  def index
+    @categorys = CategoryColumn.all.entries
+    respond_to do |format|
+      format.html {
+        @partial = render_to_string('home/category_list', :layout => false)
+        render :template  => 'home/index'
+      }
+      format.json {
+        render json: {:partial => render_to_string('home/category_list', :layout => false,:locals => { :categorys => @categorys }, :formats=>[:html]) } , :status => 200
+      }
+    end
   end
 
   def create_category
@@ -125,18 +124,52 @@ class HomeController < ApplicationController
 
   end
 
-  ###
-  def new_curio
-    @categorys = CategoryColumn.all.entries
+  def curio_list
+    categorys = CategoryColumn.all.entries
 
     default_format = nil
-    if @categorys.present?
-      first_category = @categorys.first
+    if categorys.present?
+      first_category = categorys.first
       default_format = first_category['met_options']
     end
 
     @categorys_option = []
-    @categorys.each do |x|
+    categorys.each do |x|
+      @categorys_option.push([x.name, x['_id']])
+    end
+
+    #@view_string = get_view(default_format)
+    @view_string = nil
+
+    begin
+      respond_to do |format|
+        format.html {
+          @partial = render_to_string('home/curio_list', :layout => false)
+          render :template => 'home/index'
+          return
+        }
+        format.json {
+          render json: {:partial => render_to_string('home/curio_list', :layout => false, :locals => {  :categorys_option => @categorys_option, :view_string => @view_string }, :formats=>[:html]) } , :status => 200
+          return                                                                                                         }
+      end
+    rescue => e
+      xxx = e.message
+      xxx = 0
+    end
+  end
+
+  ###
+  def new_curio
+    categorys = CategoryColumn.all.entries
+
+    default_format = nil
+    if categorys.present?
+      first_category = categorys.first
+      default_format = first_category['met_options']
+    end
+
+    @categorys_option = []
+    categorys.each do |x|
       @categorys_option.push([x.name, x['_id']])
     end
 
@@ -150,9 +183,9 @@ class HomeController < ApplicationController
           return
         }
         format.json {
-          render json: {:partial => render_to_string('home/new_curio', :layout => false, :locals => { :categorys => @categorys, :categorys_option => @categorys_option, :view_string => @view_string }, :formats=>[:html]) } , :status => 200
-          return
-        }
+          #render json: {:partial => render_to_string('home/new_curio', :layout => false, :locals => { :categorys => @categorys, :categorys_option => @categorys_option, :view_string => @view_string }, :formats=>[:html]) } , :status => 200
+          render json: {:partial => render_to_string('home/new_curio', :layout => false, :locals => {  :categorys_option => @categorys_option, :view_string => @view_string }, :formats=>[:html]) } , :status => 200
+          return                                                                                                         }
       end
     rescue => e
       xxx = e.message

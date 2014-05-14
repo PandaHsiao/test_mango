@@ -129,31 +129,10 @@
   color: #444444;
 }
 
-//#left_sidebar:a {
-//  display: block;
-//  font-size: 16px;
-//  line-height: 35px;
-//  text-decoration: none;
-//  margin-top: 5px;
-//}
-
-//#left_sidebar > a[name='ti'] {
-//  text-decoration: none;
-//  color: #444444;
-//}
-
 #left_sidebar > a:hover {
   color: #000000;
   cursor: pointer;
 }
-
-//#left_sidebar a[name='ti']:hover {
-//  color: #000000;
-//}
-//
-//#left_sidebar a:hover {
-//  cursor: pointer;
-//}
 
 #left_sidebar > a.now {
   color: #ac381e;
@@ -193,6 +172,16 @@
   color: #000000;
   display: block;
   border: 1px solid rgb(190,190,190);
+}
+
+.item {
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.sub_item {
+  font-size: 16px;
+  letter-spacing: 1px
 }
 
 

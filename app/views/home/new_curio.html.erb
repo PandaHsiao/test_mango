@@ -1,37 +1,98 @@
 
 
-選擇類別： <%= select("custom_new", "category_id", @categorys_option,{}, {:id => "category_select"}) %>
+<h4>選擇類別： <%= select("custom_new", "category_id", @categorys_option,{}, {:id => "category_select_new"}) %></h4>
 
 
-<div style="width: 85%; margin-top: 30px" id="r_bottom_partial">
+<div style="width: 85%; margin-top: 30px" id="r_b_partial_new">
   <%# render :template => 'home/category_list', :layout => false %>
   <%= @view_string.html_safe %>
 </div>
 
 
+<input type="button" class="btn btn-danger" style="font-size: 18px; border: #ac381e;margin-bottom: 8px" id="save_data" value="確定">
+
 
 
 <script>
 
-  $(function(){
-      <%# @default_format %>
+    $("#save_data").click(function(){
+        var json_array = [];
+        var category_id_item = {};
+        category_id_item["category_id"] = $("#category_select_new").val();
+        json_array.push(category_id_item);
 
-  });
+        $("#r_b_partial_new").find("[name='item']").each(function(){
+            var element_type = $(this).data('value');
 
-  $("#category_select").change(function(){
-      $.ajax({
-          url: "/home/get_category_view.json",
-          type: 'POST',
-          data:  {object_id:$(this).val()},
-          cache: false,
-          success: function(response){
-              $("#r_bottom_partial").html(response.partial);
-          },
-          error: function(){
-              alert('oops! 出現錯誤了!');
-          }
-      });
-  });
+            if (element_type == 'text'){
+                var item_name;
+                $(this).find("[name='item_name']").each(function(){
+                    item_name = $(this).text();
+                });
+
+                $(this).find("[name='item_value']").each(function(){
+                    var textbox_item = {};
+                    textbox_item["textbox_" + item_name] = $(this).val();
+                    json_array.push(textbox_item);
+                    alert(textbox_item["textbox_" + item_name] );
+                });
+            } else if (element_type == 'textarea'){
+                var item_name;
+                $(this).find("[name='item_name']").each(function(){
+                    item_name = $(this).text();
+                });
+
+                $(this).find("[name='item_value']").each(function(){
+                    var textarea_item = {};
+                    textarea_item["textarea_" + item_name] = $(this).val();
+                    json_array.push(textarea_item);
+                    alert(textarea_item["textarea_" + item_name]);
+                });
+            } else if (element_type == 'checkbox'){
+                var item_name;
+                $(this).find("[name='item_name']").each(function(){
+                    item_name = $(this).text();
+                });
+
+                $(this).find("input:checked").each(function(){
+                    //var textarea_item = {};
+                    //textarea_item["textarea_value"] = $(this).val();
+                    //json_array.push(textarea_item);
+
+                    alert($(this).val());
+                });
+            } else if (element_type == 'radio'){
+            } else if (element_type == 'select'){
+            }
+
+
+//          $(this).closest(".obj_item").each(function(){
+//              $(this).find("[name='lab_value']").each(function(index){
+//                  checkbox_item['option' + index ] = $(this).text();
+//              });
+//          });
+//          json_array.push(checkbox_item);
+
+        });
+
+
+    });
+
+    $("#category_select_new").change(function(){
+        alert('change');
+        $.ajax({
+            url: "/home/get_category_view.json",
+            type: 'POST',
+            data:  {object_id:$(this).val()},
+            cache: false,
+            success: function(response){
+                $("#r_b_partial_new").html(response.partial);
+            },
+            error: function(){
+                alert('oops! 出現錯誤了!');
+            }
+        });
+    });
 </script>
 
 

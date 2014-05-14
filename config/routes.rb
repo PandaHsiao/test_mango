@@ -33,22 +33,27 @@ TestMongo::Application.routes.draw do
   scope :format => true, :constraints => { :format => 'json' } do
     get  'home/index'
     get  'home/create_category'
+
+    get  'home/curio_list'
+    post 'home/get_curio_list'
     get  'home/new_curio'
     post 'home/get_category_view'
   end
 
-  get  'home/index'
+
   get  'home/test_category'
-  get  'home/create_category'
 
-
+  get  'home/index'
   get  'home/category_list'
-
+  get  'home/create_category'
   post 'home/save_category'
-  get  'home/modify_category'
 
+
+  get  'home/modify_category'
   get  'home/delete_category'
 
+
+  get  'home/curio_list'
   get  'home/new_curio'
 
   #==============================================================

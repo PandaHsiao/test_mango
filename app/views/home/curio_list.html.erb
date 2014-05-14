@@ -1,0 +1,34 @@
+
+<h4></h4>
+<h4>選擇類別： <%= select("custom_new", "category_id", @categorys_option,{}, {:id => "category_select_sale"}) %></h4>
+
+<input type="button" class="new_category btn btn-danger" style="font-size: 18px; border: #ac381e;margin-bottom: 8px" id="new_sale" value="新增商品">
+
+
+<div style="width: 85%; margin-top: 30px" id="r_b_partial_sale">
+  <%# @view_string.html_safe %>
+</div>
+
+
+
+
+<script>
+
+  $("#category_select_sale").change(function(){
+      $.ajax({
+          url: "/home/get_curio_list.json",
+          type: 'POST',
+          data:  {object_id:$(this).val()},
+          cache: false,
+          success: function(response){
+              $("#r_b_partial_sale").html(response.partial);
+          },
+          error: function(){
+              alert('oops! 出現錯誤了!');
+          }
+      });
+  });
+</script>
+
+
+

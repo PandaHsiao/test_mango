@@ -75,19 +75,30 @@ window.addEventListener('popstate', function(e){
 function switch_sidebar(url){
     $("#left_sidebar a.now").removeClass('now');
     $(".sub_choice a.now").removeClass('now');
+    //$("#ti1_sub").css({'height':'0','border-width':'0'})
+    //$("#ti2_sub").css({'height':'0','border-width':'0'})
+
+    $(".sub_choice").css({'height':'0','border-width':'0'})
 
     if (url == '/home/index') {
         $("#ti1").addClass('now');
+        $('#ti1_sub').css({'height':'auto','border-width':'1'})
         $("#sub_category_list").addClass('now');
     } else if (url == '/home/create_category'){
         $("#ti1").addClass('now');
+        $('#ti1_sub').css({'height':'auto','border-width':'1'})
         $("#sub_category_create").addClass('now');
+    } else if (url == '/home/new_curio') {
+        $("#ti2").addClass('now');
+        $('#ti2_sub').css({'height':'auto','border-width':'1'})
+        $("#sub_new_curio").addClass('now');
     }
 
 };
 
 $(function(){
-    $("#ti1").addClass('now');
-    $("#sub_category_list").addClass('now');
+
+    switch_sidebar($(location).attr('pathname'));
+
     bind_event();
 });

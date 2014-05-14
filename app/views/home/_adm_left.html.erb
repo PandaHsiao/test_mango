@@ -1,16 +1,16 @@
 
 <div id="left_sidebar" >
 
-  <a id="ti1" name="ti" data-value="/home/index" style="font-size: 18px;letter-spacing: 1px">• 後台-類別</a>
+  <a id="ti1" data-value="/home/index" class="item">• 後台-類別</a>
   <div id="ti1_sub" class="sub_choice" class="now">
-    <a id="sub_category_list" data-value="/home/index" style="font-size: 16px;letter-spacing: 1px">類別清單</a>
-    <a id="sub_category_create" data-value="/home/create_category" style="font-size: 16px;letter-spacing: 1px">新增類別</a>
+    <a id="sub_category_list" data-value="/home/index" class="sub_item">類別清單</a>
+    <a id="sub_category_create" data-value="/home/create_category" class="sub_item">新增類別</a>
   </div>
 
-  <a id="ti2" name="ti" data-value="/home/new_curio" style="font-size: 18px;letter-spacing: 1px">• 前台-類別</a>
-  <div id="ti2_sub" class="sub_choice" style="height: 0;border-width: 0">
-    <a id="sub_new_curio" data-value="/home/new_curio" style="font-size: 16px;letter-spacing: 1px">新增項目</a>
-    <a id="sub_res_img"  data-value="/home/new_curio" style="font-size: 16px;letter-spacing: 1px">新增項目</a>
+  <a id="ti2" data-value="/home/curio_list" class="item">• 前台-類別</a>
+  <div id="ti2_sub" class="sub_choice">
+    <a id="sub_curio_list"  data-value="/home/curio_list" class="sub_item">販賣清單</a>
+    <a id="sub_new_curio" data-value="/home/new_curio" class="sub_item">新增項目</a>
   </div>
 
 </div>
@@ -18,67 +18,48 @@
 
 <script>
 
-    $("#ti1").click(function(){
+    $(".item").click(function(){
         var t = $(this);
-        $.get('/home/index.json').done(function(response){
-            $("#ti1_sub a.now").removeClass('now');
+        var this_url = t.data('value');
+        $.get(this_url + '.json').done(function(response){
+            $(".sub_choice a.now").removeClass('now');
+            $("#left_sidebar > a").removeClass('now');
+            $(".sub_choice").animate({'height':'0','border-width':'0'});
             t.addClass('now')
-            $("#sub_category_list").addClass('now');
-            var state = {url:'/home/index'};
-            window.history.pushState(state,'', '/home/index');
+
+            var state = {url:this_url};
+            window.history.pushState(state,'', this_url);
             $("#right_partial").html(response.partial);
-            bind_event();
+
+            if (this_url == '/home/index') {
+                $("#ti1_sub").animate({'height':'48','border-width':'1'});
+                $("#sub_category_list").addClass('now');
+                bind_event();
+
+            } else if (this_url == '/home/curio_list') {
+                $("#ti2_sub").animate({'height':'48','border-width':'1'});
+                $("#sub_curio_list").addClass('now');
+            }
         }).fail(function(){ alert('oops! 出現錯誤了!') });
     });
-
-    $("#sub_category_list").click(function(){
-        var t = $(this);
-        $.get('/home/index.json').done(function(response){
-            //location.href = '/home/create_category';
-            $("#ti1_sub a.now").removeClass('now');
-            t.addClass('now')
-            var state = {url:'/home/index'};
-            window.history.pushState(state,'', '/home/index');
-            $("#right_partial").html(response.partial);
-            bind_event();
-        }).fail(function(){ alert('oops! 出現錯誤了!') });
-    });
-
-    $("#sub_category_create").click(function(){
-        var t = $(this);
-        $.get('/home/create_category.json').done(function(response){
-            $("#ti1_sub a.now").removeClass('now');
-            t.addClass('now')
-            var state = {url:'/home/create_category'};
-            window.history.pushState(state,'', '/home/create_category');
-            $("#right_partial").html(response.partial);
-            //bind_event();
-        }).fail(function(){ alert('oops! 出現錯誤了!') });
-    })
 
     ////////////////////////////////////////////////////////////////////////////////////////////
 
-    $("#ti2").click(function(){
+    $(".sub_item").click(function(){
         var t = $(this);
-        $.get('/home/new_curio.json').done(function(response){
-            $("#ti2_sub a.now").removeClass('now');
+        var this_url = t.data('value');
+        $.get(this_url + '.json').done(function(response){
+            $(".sub_choice a.now").removeClass('now');
             t.addClass('now')
-            $("#sub_new_curio").addClass('now');
-            var state = {url:'/home/new_curio'};
-            window.history.pushState(state,'', '/home/new_curio');
+            var state = {url:this_url};
+            window.history.pushState(state,'', this_url);
             $("#right_partial").html(response.partial);
+
+            if (this_url == '/home/index'){
+                bind_event();
+            }
         }).fail(function(){ alert('oops! 出現錯誤了!') });
     });
 
-    $("#sub_new_curio").click(function(){
-        var t = $(this);
-        $.get('/home/new_curio.json').done(function(response){
-            $("#ti2_sub a.now").removeClass('now');
-            t.addClass('now')
-            var state = {url:'/home/new_curio'};
-            window.history.pushState(state,'', '/home/new_curio');
-            $("#right_partial").html(response.partial);
-        }).fail(function(){ alert('oops! 出現錯誤了!') });
-    });
 
 </script>

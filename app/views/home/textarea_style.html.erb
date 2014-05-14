@@ -1,6 +1,8 @@
 <% self.formats = [:json, :html] %>
 
-<label><%= @name %></label>
-</br>
-<textarea></textarea>
-</br></br>
+<div name="item" data-value="textarea">
+  <label name="item_name"><%= @name %></label>
+  </br>
+  <textarea name="item_value"></textarea>
+  </br></br>
+</div>
