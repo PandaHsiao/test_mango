@@ -113,6 +113,19 @@ class HomeController < ApplicationController
     #
     #xx = 0
 
+    @categorys = CategoryColumn.all.entries
+    respond_to do |format|
+      format.html {
+        @partial = render_to_string('home/category_list', :layout => false)
+        render :template  => 'home/index'
+      }
+      format.json {
+        @success = true
+        @data = '新增類別成功'
+        render json: { :success => @success  ,:data => @data }
+      }
+    end
+
   end
 
   def category_list

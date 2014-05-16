@@ -163,10 +163,10 @@
             }
         });
 
-        alert(JSON.stringify(json_array))
+        //alert(JSON.stringify(json_array))
 
         $.ajax({
-            url: "/home/save_category",
+            url: "/home/save_category.json",
             type: 'POST',
             data:  {category_data: json_array},
             cache: false,
@@ -174,6 +174,7 @@
             success: function(response){
                 if (response.success){
                     alert(response.data)
+                    //$("#right_partial").html(response.partial);
                 }
                 else if (response.error){
                     alert(response.message)
