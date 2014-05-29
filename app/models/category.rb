@@ -1,10 +1,12 @@
 class Category
   include Mongoid::Document
-  field :name, type: String
+  field :cid, type: String
+  field :uid, type: String
+  field :d, type: DateTime
 
-  embeds_many :mets
+  embeds_many :category_datas
 
   def self.query_special_field(f, data)
-    where(mets: {'$elemMatch' => {n: f, v: data}})
+    where(category_datas: {'$elemMatch' => {n: f, v: data}})
   end
 end

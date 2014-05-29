@@ -1,8 +1,10 @@
 <% self.formats = [:json, :html] %>
 
-<label><%= @name %></label>
-</br>
-<% @data.each_with_index do |x,i| %>
-    <input type="radio" name="radio_group_<%= @name %>" value="<%= i %>"><%= x %>
-<% end %>
-</br></br>
+<div name="item" data-value="radio">
+  <label name="item_name"><%= @name %></label>
+  </br>
+  <% @data.each_with_index do |x,i| %>
+      <input type="radio" name="radio_group_<%= @name %>" value="<%= i %>"><%= x %>
+  <% end %>
+  </br></br>
+</div>

@@ -10,12 +10,12 @@ class HomeController < ApplicationController
     #    fs.push(Met.new(:n => y, :v => rand(0..1000)))
     #  end
     #
-    #  c.mets = fs
+    #  c.category_datas = fs
     #  c.save
     #end
 
-    #xx = Category.where('mets.n' => '1').('mets.v' => '800').count
-    #xx = Category.where(mets: {'$elemMatch' => {v: '800',n: '1'}})
+    #xx = Category.where('category_datas.n' => '1').('category_datas.v' => '800').count
+    #xx = Category.where(category_datas: {'$elemMatch' => {v: '800',n: '1'}})
 
     xx = Category.query_special_field('1','800').all.entries
     xx = 0
@@ -204,6 +204,65 @@ class HomeController < ApplicationController
       xxx = e.message
       xxx = 0
     end
+  end
+
+  def save_curio
+    curio_data = params[:curio_data]
+
+    category = Category.new
+    category_datas = []
+
+    curio_data.each do |x|
+      #sequence = x[0]
+      obj = x[1]
+      obj_array = obj.to_a
+
+      obj_array.each do |item|
+        obj_type = item[0]
+        cd = CategoryData.new
+
+        if obj_type == 'category_id'
+          category.cid = item[1].strip
+          category.d = Time.now
+          #category.uid =
+        elsif obj_type.include?('text')
+          cd.t = 'text'
+          arr_name = obj_type.split('_')
+          cd.n = arr_name[1]
+          cd.v = item[1].strip
+          category_datas.push(cd)
+        elsif obj_type.include?('tarea')
+          cd.t = 'textarea'
+          arr_name = obj_type.split('_')
+          cd.n = arr_name[1]
+          cd.v = item[1].strip
+          category_datas.push(cd)
+        elsif obj_type.include?('checked')
+          cd.t = 'checkbox'
+          arr_name = obj_type.split('_')
+          cd.n = arr_name[1]
+          cd.v = item[1].strip
+          category_datas.push(cd)
+        elsif obj_type.include?('radio')
+          cd.t = 'radio'
+          arr_name = obj_type.split('_')
+          cd.n = arr_name[1]
+          cd.v = item[1].strip
+          category_datas.push(cd)
+        elsif obj_type.include?('select')
+          cd.t = 'select'
+          arr_name = obj_type.split('_')
+          cd.n = arr_name[1]
+          cd.v = item[1].strip
+          category_datas.push(cd)
+        end
+      end
+    end
+
+    category.category_datas = category_datas
+    category.save
+
+
   end
 
   def get_category_view

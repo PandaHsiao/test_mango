@@ -1,10 +1,12 @@
 <% self.formats = [:json, :html] %>
 
-<label><%= @name %></label>
-</br>
-<select>
-  <% @data.each_with_index do |x,i| %>
-    <option value="<%= i %>"><%= x %></option>
-  <% end %>
-</select>
-</br></br>
+<div name="item" data-value="select">
+  <label name="item_name"><%= @name %></label>
+  </br>
+  <select>
+    <% @data.each_with_index do |x,i| %>
+        <option value="<%= i %>"><%= x %></option>
+    <% end %>
+  </select>
+  </br></br>
+</div>

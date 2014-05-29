@@ -37,6 +37,7 @@ TestMongo::Application.routes.draw do
     get  'home/curio_list'
     post 'home/get_curio_list'
     get  'home/new_curio'
+    post 'home/save_curio'
     post 'home/get_category_view'
 
     post 'home/save_category'
@@ -57,6 +58,7 @@ TestMongo::Application.routes.draw do
 
   get  'home/curio_list'
   get  'home/new_curio'
+  post 'home/save_curio'
 
   #==============================================================
   get  'b_home/index'

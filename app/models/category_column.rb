@@ -4,5 +4,4 @@ class CategoryColumn
   field :status, type: String
 
   embeds_many :met_options
-  embeds_many :category_datas
 end

@@ -44,9 +44,9 @@
 
                 $(this).find("[name='item_value']").each(function(){
                     var textarea_item = {};
-                    textarea_item["textarea_" + item_name] = $(this).val();
+                    textarea_item["tarea_" + item_name] = $(this).val();
                     json_array.push(textarea_item);
-                    alert(textarea_item["textarea_" + item_name]);
+                    alert(textarea_item["tarea_" + item_name]);
                 });
             } else if (element_type == 'checkbox'){
                 var item_name;
@@ -54,28 +54,58 @@
                     item_name = $(this).text();
                 });
 
-                $(this).find("input:checked").each(function(){
-                    //var textarea_item = {};
-                    //textarea_item["textarea_value"] = $(this).val();
-                    //json_array.push(textarea_item);
-
-                    alert($(this).val());
+                var checked_item = {};
+                $(this).find("input:checked").each(function(index){
+                    checked_item["checked_" + item_name + "_" + index] = $(this).val();
                 });
+                json_array.push(checked_item);
             } else if (element_type == 'radio'){
+                var item_name;
+                $(this).find("[name='item_name']").each(function(){
+                    item_name = $(this).text();
+                });
+
+                var radio_item = {};
+                $(this).find("input:checked").each(function(){
+                    radio_item["radio_" + item_name] = $(this).val();
+                });
+                json_array.push(radio_item);
             } else if (element_type == 'select'){
+                var item_name;
+                $(this).find("[name='item_name']").each(function(){
+                    item_name = $(this).text();
+                });
+
+                var select_item = {};
+                $(this).find("option:selected").each(function(){
+                    select_item["select_" + item_name] = $(this).val();
+                });
+                json_array.push(select_item);
             }
-
-
-//          $(this).closest(".obj_item").each(function(){
-//              $(this).find("[name='lab_value']").each(function(index){
-//                  checkbox_item['option' + index ] = $(this).text();
-//              });
-//          });
-//          json_array.push(checkbox_item);
-
         });
 
-
+        $.ajax({
+            url: "/home/save_curio.json",
+            type: 'POST',
+            data:  {curio_data: json_array},
+            cache: false,
+            async: false,
+            success: function(response){
+                if (response.success){
+                    alert(response.data)
+                    //$("#right_partial").html(response.partial);
+                }
+                else if (response.error){
+                    alert(response.message)
+                }
+                else {
+                    alert('發生未預期的回應，請告知CoDream小組處理!')
+                }
+            },
+            error: function(){
+                alert('oops! 出現錯誤了!');
+            }
+        });
     });
 
     $("#category_select_new").change(function(){
