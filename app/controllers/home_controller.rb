@@ -1,6 +1,11 @@
 class HomeController < ApplicationController
   layout 'home'
 
+  def uindex
+    # user index
+
+  end
+
   def test_category
     #(1..10).each do |x|
     #  c = Category.new
@@ -141,18 +146,23 @@ class HomeController < ApplicationController
     categorys = CategoryColumn.all.entries
 
     default_format = nil
-    if categorys.present?
-      first_category = categorys.first
-      default_format = first_category['met_options']
-    end
 
     @categorys_option = []
-    categorys.each do |x|
-      @categorys_option.push([x.name, x['_id']])
+    first_category_id = nil
+    if categorys.present?
+
+
+      categorys.each do |x|
+        if first_category_id.blank?
+          first_category_id = x['_id']
+        end
+        @categorys_option.push([x.name, x['_id']])
+      end
     end
 
-    #@view_string = get_view(default_format)
-    @view_string = nil
+    default_articles = Category.where(:cid => first_category_id)
+
+    @view_string = get_articels_view(default_articles)
 
     begin
       respond_to do |format|
@@ -162,8 +172,9 @@ class HomeController < ApplicationController
           return
         }
         format.json {
-          render json: {:partial => render_to_string('home/curio_list', :layout => false, :locals => {  :categorys_option => @categorys_option, :view_string => @view_string }, :formats=>[:html]) } , :status => 200
-          return                                                                                                         }
+          render json: {:partial => render_to_string('home/curio_list', :layout => false, :locals => {:categorys_option => @categorys_option, :view_string => @view_string }, :formats=>[:html]) } , :status => 200
+          return
+        }
       end
     rescue => e
       xxx = e.message
@@ -225,6 +236,8 @@ class HomeController < ApplicationController
           category.cid = item[1].strip
           category.d = Time.now
           #category.uid =
+        elsif obj_type.include?('title')
+          category.title = item[1].strip
         elsif obj_type.include?('text')
           cd.t = 'text'
           arr_name = obj_type.split('_')
@@ -276,11 +289,27 @@ class HomeController < ApplicationController
     render json:{:partial => view_string}
   end
 
+  def get_articels_view(categorys)
+    view_string = nil
+    @categorys = categorys
+    respond_to do |format|
+      format.html { view_string = render_to_string('home/article_list', :layout => false, :locals => { :categorys => @categorys }) }
+      format.json { view_string = render_to_string('home/article_list', :layout => false, :locals => { :categorys => @categorys }, :formats=>[:html]) }
+    end
+
+    return view_string
+  end
+
   def get_view(default_format)
     view_string = nil
     @data = []
     data_type = nil
     @name = nil
+
+    respond_to do |format|
+      format.html { view_string = "#{view_string} #{render_to_string('home/title_style', :layout => false)}" }
+      format.json { view_string = "#{view_string} #{render_to_string('home/title_style', :layout => false, :formats=>[:html])}" }
+    end
 
     default_format.each_with_index do |x, i|
       obj_type = x['n']

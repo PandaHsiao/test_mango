@@ -24,7 +24,13 @@
         $("#r_b_partial_new").find("[name='item']").each(function(){
             var element_type = $(this).data('value');
 
-            if (element_type == 'text'){
+            if (element_type == 'title'){
+                $(this).find("[name='item_value']").each(function(){
+                    var title_item = {};
+                    title_item["title"] = $(this).val();
+                    json_array.push(title_item);
+                });
+            } else if (element_type == 'text'){
                 var item_name;
                 $(this).find("[name='item_name']").each(function(){
                     item_name = $(this).text();

@@ -1,0 +1,15 @@
+<% self.formats = [:json, :html] %>
+
+<table style="border: #E0E0E0 1px solid;display: inline-block;margin-top: 2px">
+  <% @categorys.each_with_index do |x, index| %>
+      <% if index % 2 == 1%>
+          <tr style="font-size: 20px;min-width: 600px; background-color: #eaf4f9; padding: 10px 15px 10px 15px;line-height: 32px">
+            <td style="width: 50%"><a data-value="<%= x.object_id %>"><%= x.title %></a> </td>
+          </tr>
+      <% else %>
+          <tr style="font-size: 20px;min-width: 600px; padding: 10px 15px 10px 15px;line-height: 32px">
+            <td style="width: 50%"><a data-value="<%= x.object_id %>"><%= x.title %></a> </td>
+          </tr>
+      <% end %>
+  <% end %>
+</table>

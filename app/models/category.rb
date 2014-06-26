@@ -3,6 +3,7 @@ class Category
   field :cid, type: String
   field :uid, type: String
   field :d, type: DateTime
+  field :title, type: String
 
   embeds_many :category_datas
 
