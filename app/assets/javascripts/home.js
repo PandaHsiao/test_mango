@@ -88,6 +88,10 @@ function switch_sidebar(url){
         $("#ti1").addClass('now');
         $('#ti1_sub').css({'height':'auto','border-width':'1'})
         $("#sub_category_create").addClass('now');
+    } else if (url == '/home/curio_list') {
+        $("#ti2").addClass('now');
+        $('#ti2_sub').css({'height':'auto','border-width':'1'})
+        $("#sub_curio_list").addClass('now');
     } else if (url == '/home/new_curio') {
         $("#ti2").addClass('now');
         $('#ti2_sub').css({'height':'auto','border-width':'1'})
@@ -101,4 +105,6 @@ $(function(){
     switch_sidebar($(location).attr('pathname'));
 
     bind_event();
+
+
 });

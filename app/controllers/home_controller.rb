@@ -162,7 +162,7 @@ class HomeController < ApplicationController
 
     default_articles = Category.where(:cid => first_category_id)
 
-    @view_string = get_articels_view(default_articles)
+    @view_string = get_view_articles(default_articles)
 
     begin
       respond_to do |format|
@@ -289,7 +289,15 @@ class HomeController < ApplicationController
     render json:{:partial => view_string}
   end
 
-  def get_articels_view(categorys)
+  def get_articles_view
+    select_articles = Category.where(:cid => params[:object_id])
+
+    view_string = get_view_articles(select_articles)
+
+    render json:{:partial => view_string}
+  end
+
+  def get_view_articles(categorys)
     view_string = nil
     @categorys = categorys
     respond_to do |format|

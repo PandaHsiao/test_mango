@@ -5,7 +5,7 @@
 <input type="button" class="new_category btn btn-danger" style="font-size: 18px; border: #ac381e;margin-bottom: 8px" id="new_sale" value="新增商品">
 
 
-<div style="width: 85%; margin-top: 30px" id="r_b_partial_artcile">
+<div style="width: 85%; margin-top: 0px" id="r_b_partial_artcile">
   <%= @view_string.html_safe %>
 </div>
 
@@ -13,9 +13,12 @@
 
 <script>
   // write in home.js
+
+  // curio_list.html.erb
   $("#category_select_sale").change(function(){
+      alert('x')
       $.ajax({
-          url: "/home/get_curio_list.json",
+          url: "/home/get_articles_view.json",
           type: 'POST',
           data:  {object_id:$(this).val()},
           cache: false,
@@ -27,6 +30,14 @@
           }
       });
   });
+</script>
+
+
+<script>
+    $("#articles_table td").click(function(){
+        alert($(this).data("value"));
+    });
+
 </script>
 
 

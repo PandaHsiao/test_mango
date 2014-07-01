@@ -39,6 +39,7 @@ TestMongo::Application.routes.draw do
     get  'home/new_curio'
     post 'home/save_curio'
     post 'home/get_category_view'
+    post 'home/get_articles_view'
 
     post 'home/save_category'
   end
