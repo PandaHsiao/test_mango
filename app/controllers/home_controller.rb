@@ -1,6 +1,18 @@
 class HomeController < ApplicationController
   layout 'home'
 
+  def clear_db
+    xx = CategoryColumn.all.entries
+    xx.each do |c|
+      c.destroy
+    end
+
+    bb = Category.all.entries
+    bb.each do |e|
+      e.destroy
+    end
+  end
+
   def uindex
     # user index
 

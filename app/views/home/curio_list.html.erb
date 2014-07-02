@@ -16,7 +16,6 @@
 
   // curio_list.html.erb
   $("#category_select_sale").change(function(){
-      alert('x')
       $.ajax({
           url: "/home/get_articles_view.json",
           type: 'POST',

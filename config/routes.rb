@@ -55,6 +55,7 @@ TestMongo::Application.routes.draw do
 
   get  'home/modify_category'
   get  'home/delete_category'
+  get  'home/clear_db'
 
 
   get  'home/curio_list'
