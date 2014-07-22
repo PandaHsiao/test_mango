@@ -290,16 +290,6 @@ class HomeController < ApplicationController
 
   end
 
-  def get_category_view
-    select_category = CategoryColumn.where(:_id => params[:object_id]).first
-
-    view_string = nil
-    if select_category.present?
-      view_string = get_view(select_category['met_options'])
-    end
-
-    render json:{:partial => view_string}
-  end
 
   def get_articles_view
     select_articles = Category.where(:cid => params[:object_id])
@@ -320,11 +310,36 @@ class HomeController < ApplicationController
     return view_string
   end
 
-  def get_view(default_format)
+
+
+  #===================== Block Function =====================
+  # Floor1: get_category_view
+  # Floor2: get_view
+  # Floor3: check_obj
+
+  #Trigger: 新增項目，切換下拉式選單
+  #Functional: 用object id找出一類別,將其欄位製作為partial 並以json回傳
+  def get_category_view
+
+    # category_column: 包含多個met_option,存放類別與攔位格示
+    select_category = CategoryColumn.where(:_id => params[:object_id]).first
+
     view_string = nil
-    @data = []
+    if select_category.present?
+      view_string = get_view(select_category['met_options'])
+    end
+
+    render json:{:partial => view_string}
+  end
+
+  #Trigger: internal calls
+  #Functional: use category format, to render json ,html.
+  def get_view(default_format)
+    @data = []            #option use, only radiobox, checkbox, select option,
+    @name = nil           #item label name
+
     data_type = nil
-    @name = nil
+    view_string = nil     #return use
 
     respond_to do |format|
       format.html { view_string = "#{view_string} #{render_to_string('home/title_style', :layout => false)}" }
@@ -397,6 +412,8 @@ class HomeController < ApplicationController
     return view_string
   end
 
+  #Trigger: internal calls
+  #Functional: only checkbox, radiobox, select option, to render json ,html.
   def check_obj(data, data_type, name)
     @data = data
     @name = name
@@ -422,7 +439,7 @@ class HomeController < ApplicationController
 
     return view_string
   end
-  ##
+  #===================== Block Function =====================
 
 
 
