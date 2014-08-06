@@ -26,46 +26,55 @@ TestMongo::Application.routes.draw do
   #
   #end
 
-  root :to => 'home#index'
-
 
 
   scope :format => true, :constraints => { :format => 'json' } do
     get  'home/index'
-    get  'home/create_category'
+    get  'home/new_category'
+    post 'home/save_category'
+    post 'home/get_category_view'      #jquery partial view
+
 
     get  'home/curio_list'
-    post 'home/get_curio_list'
     get  'home/new_curio'
     post 'home/save_curio'
-    post 'home/get_category_view'
-    post 'home/get_articles_view'
+    post 'home/get_curios_view'        #jquery partial view
 
-    post 'home/save_category'
+    post 'home/get_article_view'       #jquery partial view
+
+
   end
 
 
+
+
+  #= Abandoned =================================
+  #get  'home/category_list'      # replace by home/index partial view
+
+  #= DataBase===================================
+  get  'home/clear_db'
+
+  #= Test ======================================
   get  'home/test_category'
 
+  #= Home ======================================
+  root :to => 'home#index'
   get  'home/index'
-  get  'home/category_list'
-  get  'home/create_category'
+
+  get  'home/new_category'
   post 'home/save_category'
-
-
   get  'home/modify_category'
-  get  'home/delete_category'
-  get  'home/clear_db'
 
 
   get  'home/curio_list'
   get  'home/new_curio'
   post 'home/save_curio'
 
-  #==============================================================
+   #= B_home======================================================
   get  'b_home/index'
 
-  #==============================================================
+
+
 
 
 

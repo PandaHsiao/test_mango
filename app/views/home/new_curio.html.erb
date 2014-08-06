@@ -50,9 +50,9 @@
 
                 $(this).find("[name='item_value']").each(function(){
                     var textarea_item = {};
-                    textarea_item["tarea_" + item_name] = $(this).val();
+                    textarea_item["textarea_" + item_name] = $(this).val();
                     json_array.push(textarea_item);
-                    alert(textarea_item["tarea_" + item_name]);
+                    alert(textarea_item["textarea_" + item_name]);
                 });
             } else if (element_type == 'checkbox'){
                 var item_name;
@@ -62,7 +62,7 @@
 
                 var checked_item = {};
                 $(this).find("input:checked").each(function(index){
-                    checked_item["checked_" + item_name + "_" + index] = $(this).val();
+                    checked_item["checkbox_" + item_name + "_" + index] = $(this).val();
                 });
                 json_array.push(checked_item);
             } else if (element_type == 'radio'){
@@ -73,7 +73,7 @@
 
                 var radio_item = {};
                 $(this).find("input:checked").each(function(){
-                    radio_item["radio_" + item_name] = $(this).val();
+                    radio_item["radiobox_" + item_name] = $(this).val();
                 });
                 json_array.push(radio_item);
             } else if (element_type == 'select'){

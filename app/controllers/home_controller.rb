@@ -1,9 +1,29 @@
 class HomeController < ApplicationController
   layout 'home'
 
+  #===================== Block Function =====================
+  # Block Relation : abandoned
+  #
+  # Function : category_list
+  #   Trigger: get url
+  #   Func   : show created category list
+  #   Reason : replace by home/index partial view
+  def category_list
+    @categorys = CategoryColumn.all.entries
+    xxx = 0
+  end
+
+
+  #===================== Block Function =====================
+  # Block Relation : db operation.
+  #
+  # Function : clear_db
+  #   Trigger: get url
+  #   Func   : clear all db but not include user db
+
   def clear_db
-    xx = CategoryColumn.all.entries
-    xx.each do |c|
+    aa = CategoryColumn.all.entries
+    aa.each do |c|
       c.destroy
     end
 
@@ -13,10 +33,14 @@ class HomeController < ApplicationController
     end
   end
 
-  def uindex
-    # user index
 
-  end
+
+  #===================== Block Function =====================
+  # Block Relation : test
+  #
+  # Function : test_category
+  #   Trigger: get url
+  #   Func   : test query speed
 
   def test_category
     #(1..10).each do |x|
@@ -38,12 +62,14 @@ class HomeController < ApplicationController
     xx = 0
   end
 
-  def delete_category
-    xx = CategoryColumn.all.entries
-    xx.each do |c|
-      c.destroy
-    end
-  end
+
+
+  #===================== Block Function =====================
+  # Block Relation : index
+  #
+  # Function : index
+  #   Trigger: get url, url.json
+  #   Func   : default is category_list, now for template test
 
   def index
     @categorys = CategoryColumn.all.entries
@@ -58,7 +84,23 @@ class HomeController < ApplicationController
     end
   end
 
-  def create_category
+  def uindex
+    # user index
+  end
+
+
+  #===================== Block Function =====================
+  # Block Relation : category New, Save, TODO (Modify), TODO (Delete)
+  #
+  # Function : new_category
+  #   Trigger: get url, url.json
+  #   Func   : show new category view
+  #
+  # Function : save_category
+  #   Trigger: post url
+  #   Func   : save new category data to db
+
+  def new_category
     respond_to do |format|
       format.html {
         @partial = render_to_string('home/create_category', :layout => false)
@@ -145,14 +187,25 @@ class HomeController < ApplicationController
 
   end
 
-  def category_list
-    @categorys = CategoryColumn.all.entries
-    xxx = 0
-  end
-
   def modify_category
-
   end
+
+
+
+  #===================== Block Function =====================
+  # Block Relation : curio article list, New, Save, TODO (Modify), TODO (Delete)
+  #
+  # Function : curio_list
+  #   Trigger: get url, url.json
+  #   Func   : show created curios view
+  #
+  # Function : new_curio
+  #   Trigger: get url, url.json
+  #   Func   : show new curio view
+  #
+  # Function : save_curio
+  #   Trigger: post url
+  #   Func   : save new curio data to db
 
   def curio_list
     categorys = CategoryColumn.all.entries
@@ -172,9 +225,9 @@ class HomeController < ApplicationController
       end
     end
 
-    default_articles = Category.where(:cid => first_category_id)
+    default_category = Category.where(:cid => first_category_id)
 
-    @view_string = get_view_articles(default_articles)
+    @view_string = get_view_curios(default_category)
 
     begin
       respond_to do |format|
@@ -194,7 +247,6 @@ class HomeController < ApplicationController
     end
   end
 
-  ###
   def new_curio
     categorys = CategoryColumn.all.entries
 
@@ -209,7 +261,7 @@ class HomeController < ApplicationController
       @categorys_option.push([x.name, x['_id']])
     end
 
-    @view_string = get_view(default_format)
+    @view_string = get_view_category(default_format)
 
     begin
       respond_to do |format|
@@ -250,26 +302,26 @@ class HomeController < ApplicationController
           #category.uid =
         elsif obj_type.include?('title')
           category.title = item[1].strip
-        elsif obj_type.include?('text')
-          cd.t = 'text'
+        elsif obj_type.include?('textbox')
+          cd.t = 'textbox'
           arr_name = obj_type.split('_')
           cd.n = arr_name[1]
           cd.v = item[1].strip
           category_datas.push(cd)
-        elsif obj_type.include?('tarea')
+        elsif obj_type.include?('textarea')
           cd.t = 'textarea'
           arr_name = obj_type.split('_')
           cd.n = arr_name[1]
           cd.v = item[1].strip
           category_datas.push(cd)
-        elsif obj_type.include?('checked')
+        elsif obj_type.include?('checkbox')
           cd.t = 'checkbox'
           arr_name = obj_type.split('_')
           cd.n = arr_name[1]
           cd.v = item[1].strip
           category_datas.push(cd)
-        elsif obj_type.include?('radio')
-          cd.t = 'radio'
+        elsif obj_type.include?('radiobox')
+          cd.t = 'radiobox'
           arr_name = obj_type.split('_')
           cd.n = arr_name[1]
           cd.v = item[1].strip
@@ -291,20 +343,33 @@ class HomeController < ApplicationController
   end
 
 
-  def get_articles_view
-    select_articles = Category.where(:cid => params[:object_id])
 
-    view_string = get_view_articles(select_articles)
+  #===================== Block Function =====================
+  # Main Func: use category_column object_id to find category cid document,
+  #            and render all result for grid with json type or html.
+
+  # Floor1   : get_curios_view
+  #   Trigger: 販賣清單，切換下拉式選單
+  #   Func   : same Main Func.
+
+  # Floor2   : get_view_curios
+  #   Trigger: internal calls
+  #   Func   : use category format, to render json ,html.
+
+  def get_curios_view
+    select_category = Category.where(:cid => params[:object_id])
+
+    view_string = get_view_curios(select_category)
 
     render json:{:partial => view_string}
   end
 
-  def get_view_articles(categorys)
+  def get_view_curios(select_category)
     view_string = nil
-    @categorys = categorys
+    @curios = select_category
     respond_to do |format|
-      format.html { view_string = render_to_string('home/article_list', :layout => false, :locals => { :categorys => @categorys }) }
-      format.json { view_string = render_to_string('home/article_list', :layout => false, :locals => { :categorys => @categorys }, :formats=>[:html]) }
+      format.html { view_string = render_to_string('home/curios', :layout => false, :locals => { :curios => @curios }) }
+      format.json { view_string = render_to_string('home/curios', :layout => false, :locals => { :curios => @curios }, :formats=>[:html]) }
     end
 
     return view_string
@@ -312,29 +377,161 @@ class HomeController < ApplicationController
 
 
 
-  #===================== Block Function =====================
-  # Floor1: get_category_view
-  # Floor2: get_view
-  # Floor3: check_obj
+  #===================================
 
-  #Trigger: 新增項目，切換下拉式選單
-  #Functional: 用object id找出一類別,將其欄位製作為partial 並以json回傳
-  def get_category_view
+  def get_article_view
+    select_article = Category.where(:_id => params[:object_id]).first
 
-    # category_column: 包含多個met_option,存放類別與攔位格示
-    select_category = CategoryColumn.where(:_id => params[:object_id]).first
-
-    view_string = nil
-    if select_category.present?
-      view_string = get_view(select_category['met_options'])
-    end
+    view_string = get_view_article(select_article)
 
     render json:{:partial => view_string}
   end
 
-  #Trigger: internal calls
-  #Functional: use category format, to render json ,html.
-  def get_view(default_format)
+  def get_view_article(select_article)
+    view_string = nil
+
+    select_category = CategoryColumn.where(:_id => select_article.cid).first
+
+    if select_category.present?
+      select_format = select_category['met_options']
+      view_string = parse_format(select_format, select_article)
+    end
+
+    return view_string
+  end
+
+  def parse_format(select_format, select_article)
+    article_datas = select_article['category_datas']
+    @data = []            #option use, only radiobox, checkbox, select option,
+    @name = nil           #item label name
+    @value = nil
+    data_type = nil
+    view_string = nil
+
+    select_format.each_with_index do |x, i|
+      obj_type = x['n']
+
+      if obj_type == 'textbox'
+        if @data.present? && data_type.present?
+          view_string = "#{view_string} #{check_obj(@data, data_type, @name)}"
+          @data.clear
+          data_type = nil
+        end
+
+        @name = x['v']
+
+        temp_value = check_field(obj_type, @name, article_datas)
+        if temp_value.present?
+          @value = temp_value
+        else
+          @value = nil
+        end
+
+        respond_to do |format|
+          format.html { view_string = "#{view_string} #{render_to_string('home/textbox_value', :layout => false, :locals => { :name => @name })}" }
+          format.json { view_string = "#{view_string} #{render_to_string('home/textbox_value', :layout => false, :locals => { :name => @name, :value => @value} , :formats=>[:html])}" }
+        end
+      elsif obj_type == 'textarea'
+        if @data.present? && data_type.present?
+          view_string = "#{view_string} #{check_obj(@data, data_type, @name)}"
+          @data.clear
+          data_type = nil
+        end
+
+        @name = x['v']
+
+        temp_value = check_field(obj_type, @name, article_datas)
+        if temp_value.present?
+          @value = temp_value
+        else
+          @value = nil
+        end
+
+        respond_to do |format|
+          format.html { view_string = "#{view_string} #{render_to_string('home/textarea_value', :layout => false, :locals => { :name => @name })}" }
+          format.json { view_string = "#{view_string} #{render_to_string('home/textarea_value', :layout => false, :locals => { :name => @name, :value => @value }, :formats=>[:html])}" }
+        end
+      elsif obj_type == 'checkbox'
+        if @data.present? && data_type.present?
+          view_string = "#{view_string} #{check_obj(@data, data_type, @name)}"
+          @data.clear
+          data_type = nil
+        end
+
+        @name = x['v']
+        data_type = obj_type
+      elsif obj_type == 'radiobox'
+        if @data.present? && data_type.present?
+          view_string = "#{view_string} #{check_obj(@data, data_type, @name)}"
+          @data.clear
+          data_type = nil
+        end
+
+        @name = x['v']
+        data_type = obj_type
+      elsif obj_type == 'select'
+        if @data.present? && data_type.present?
+          view_string = "#{view_string} #{check_obj(@data, data_type, @name)}"
+          @data.clear
+          data_type = nil
+        end
+
+        @name = x['v']
+        data_type = obj_type
+      elsif obj_type.include? "option"
+        @data.push(x['v'])
+
+        if i == select_format.length - 1
+          view_string = "#{view_string} #{check_obj(@data, data_type, @name)}"
+        end
+      end
+    end
+
+    return view_string
+  end
+
+
+  def check_field(target_type, target_name, article_datas)
+
+    article_datas.each do |x|
+      if x['t'] == target_type && x['n'] == target_name
+        return x['v']
+      end
+    end
+
+  end
+
+
+  #===================================
+
+  #===================== Block Function =====================
+  # Main Func: use category_column object_id to find one document,
+  #            and render parsed embed set to partial for json type or html.
+
+  # Floor1   : get_category_view
+  #   Trigger: 新增項目，切換下拉式選單
+  #   Func   : same Main Func.
+
+  # Floor2   : get_view
+  #   Trigger: internal calls
+  #   Func   : use category format, to render json ,html.
+
+  # Floor3   : check_obj
+  #   Trigger: internal calls
+  #   Func   : only checkbox, radio, select option, to render json ,html.
+
+  def get_category_view
+    select_category = CategoryColumn.where(:_id => params[:object_id]).first
+
+    view_string = nil
+    if select_category.present?
+      view_string = get_view_category(select_category['met_options'])
+    end
+
+    render json: {:partial => view_string}
+  end
+
+  def get_view_category(default_format)
     @data = []            #option use, only radiobox, checkbox, select option,
     @name = nil           #item label name
 
@@ -412,8 +609,6 @@ class HomeController < ApplicationController
     return view_string
   end
 
-  #Trigger: internal calls
-  #Functional: only checkbox, radiobox, select option, to render json ,html.
   def check_obj(data, data_type, name)
     @data = data
     @name = name

@@ -5,7 +5,7 @@
 <input type="button" class="new_category btn btn-danger" style="font-size: 18px; border: #ac381e;margin-bottom: 8px" id="new_sale" value="新增商品">
 
 
-<div style="width: 85%; margin-top: 0px" id="r_b_partial_artcile">
+<div style="width: 85%; margin-top: 0px" id="r_b_partial_curios">
   <%= @view_string.html_safe %>
 </div>
 
@@ -17,12 +17,13 @@
   // curio_list.html.erb
   $("#category_select_sale").change(function(){
       $.ajax({
-          url: "/home/get_articles_view.json",
+          url: "/home/get_curios_view.json",
           type: 'POST',
           data:  {object_id:$(this).val()},
           cache: false,
           success: function(response){
-              $("#r_b_partial_artcile").html(response.partial);
+              $("#r_b_partial_curios").html(response.partial);
+              bind_event();
           },
           error: function(){
               alert('oops! 出現錯誤了!');
@@ -33,9 +34,20 @@
 
 
 <script>
-    $("#articles_table td").click(function(){
-        alert($(this).data("value"));
-    });
+//    $("#curios_table td").click(function(){
+//        $.ajax({
+//            url: "/home/get_article_view.json",
+//            type: 'POST',
+//            data:  {object_id:$(this).data("value")},
+//            cache: false,
+//            success: function(response){
+//                //$("#r_b_partial_curios").html(response.partial);
+//            },
+//            error: function(){
+//                alert('oops! 出現錯誤了!');
+//            }
+//        });
+//    });
 
 </script>
 

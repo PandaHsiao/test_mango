@@ -17,16 +17,17 @@
 //========================================================
 function bind_event(){
     $("#new_category").on("click", function(){
-        $.get('/home/create_category.json').done(function(response){
+        $.get('/home/new_category.json').done(function(response){
             //location.href = '/home/create_category';
             $("#ti1_sub a.now").removeClass('now');
-            $("#sub_category_create").addClass('now')
-            var state = {url:'/home/create_category'};
-            window.history.pushState(state,'', '/home/create_category');
+            $("#sub_new_category").addClass('now')
+            var state = {url:'/home/new_category'};
+            window.history.pushState(state,'', '/home/new_category');
             $("#right_partial").html(response.partial);
         }).fail(function(){ alert('oops! 出現錯誤了!') });
     });
 
+    //------------------------------------
 //    $("#sub_category_list").on("click", function(){
 //        var t = $(this);
 //        $.get('/home/index.json').done(function(response){
@@ -51,6 +52,24 @@ function bind_event(){
 //            //bind_event();
 //        }).fail(function(){ alert('oops! 出現錯誤了!') });
 //    })
+
+
+    //-------------------------------------
+
+    $("#curios_table td").on("click", function(){
+        $.ajax({
+            url: "/home/get_article_view.json",
+            type: 'POST',
+            data:  {object_id:$(this).data("value")},
+            cache: false,
+            success: function(response){
+                $("#r_b_partial_curios").html(response.partial);
+            },
+            error: function(){
+                alert('oops! 出現錯誤了!');
+            }
+        });
+    });
 };
 
 window.addEventListener('popstate', function(e){
@@ -84,10 +103,10 @@ function switch_sidebar(url){
         $("#ti1").addClass('now');
         $('#ti1_sub').css({'height':'auto','border-width':'1'})
         $("#sub_category_list").addClass('now');
-    } else if (url == '/home/create_category'){
+    } else if (url == '/home/new_category'){
         $("#ti1").addClass('now');
         $('#ti1_sub').css({'height':'auto','border-width':'1'})
-        $("#sub_category_create").addClass('now');
+        $("#sub_new_category").addClass('now');
     } else if (url == '/home/curio_list') {
         $("#ti2").addClass('now');
         $('#ti2_sub').css({'height':'auto','border-width':'1'})

@@ -7,7 +7,7 @@
     <h3>元素清單</h3>
     <div class="obj_area">
       <label class="obj_title">文字方框</label>
-      <div name="obj" data-value="text">
+      <div name="obj" data-value="textbox">
         <input type="text">
       </div>
       <input type="button" class="obj_add_btn btn btn-danger" value="加入">
@@ -32,7 +32,7 @@
 
     <div class="obj_area">
       <label class="obj_title">單選方塊</label>
-      <div name="obj" data-value="radio">
+      <div name="obj" data-value="radiobox">
         <input type="radio" value="0"> 選項A &nbsp&nbsp
         <input type="radio" value="1"> 選項B
       </div>
@@ -120,7 +120,7 @@
         $("#sort_div").find("[name='item_name']").each(function(){
             var element_type = $(this).data('value');
 
-            if (element_type == 'text'){
+            if (element_type == 'textbox'){
                 var textbox_item = {};
                 textbox_item["textbox_name"] = $(this).val();
                 json_array.push(textbox_item);
@@ -138,7 +138,7 @@
                     });
                 });
                 json_array.push(checkbox_item);
-            } else if (element_type == 'radio'){
+            } else if (element_type == 'radiobox'){
                 var radiobox_item = {};
                 radiobox_item["radiobox_name"] = $(this).val();
 
@@ -277,7 +277,7 @@
         if (check_result && target_data_value == 'checkbox'){
             check_result = checkbox_ok(target_btn);
         }
-        else if (check_result && target_data_value == 'radio'){
+        else if (check_result && target_data_value == 'radiobox'){
             check_result = radio_ok(target_btn);
         }
         else if (check_result && target_data_value == 'select'){
@@ -445,7 +445,7 @@
     function item_edit(target_btn, target_data_value){
         if (target_data_value == 'checkbox'){
             checkbox_edit(target_btn);
-        } else if (target_data_value == 'radio'){
+        } else if (target_data_value == 'radiobox'){
             radio_edit(target_btn);
         } else if (target_data_value == 'select'){
             select_edit(target_btn);
@@ -539,13 +539,13 @@
         $(this).closest('div').find("[name='obj']").each(function(){
             var html_tag = $(this).data("value");
 
-            if (html_tag == 'text'){
+            if (html_tag == 'textbox'){
                 add_textbox();
             } else if(html_tag == 'textarea'){
                 add_textarea();
             } else if(html_tag == 'checkbox'){
                 add_checkbox();
-            } else if(html_tag == 'radio'){
+            } else if(html_tag == 'radiobox'){
                 add_radio();
             } else if(html_tag == 'select'){
                 add_select();
@@ -567,7 +567,7 @@
         var row = $('<div class="obj_item sortable"></div>').appendTo(target_div);
         var in_row_0 = $('<div class="obj_table"></div>').appendTo(row);
         $('<label class="obj_title"><span style="color: red;margin-right: 3px;">*</span>項目名稱：<a class="obj_delete_btn" style="text-decoration: none;">x</a></label>').appendTo(in_row_0);
-        $('<input type="text" name="item_name" data-value="text" style="margin-left: 10px;padding-left: 5px;">').appendTo(in_row_0);
+        $('<input type="text" name="item_name" data-value="textbox" style="margin-left: 10px;padding-left: 5px;">').appendTo(in_row_0);
         $('<div style="line-height: 10px">&nbsp</div>').appendTo(row);
         var in_row_1 = $('<div class="obj_table"></div>').appendTo(row);
         $('<label class="obj_title"><span style="color: red;margin-right: 5px;">&nbsp</span>文字方框：</label>').appendTo(in_row_1);
@@ -651,7 +651,7 @@
         var row = $('<div class="obj_item sortable"></div>').appendTo(target_div);
         var in_row_0 = $('<div class="obj_table"></div>').appendTo(row);
         $('<label class="obj_title"><span style="color: red;margin-right: 3px;">*</span>項目名稱：<a class="obj_delete_btn" style="text-decoration: none;">x</a></label>').appendTo(in_row_0);
-        $('<input type="text" name="item_name" data-value="radio" style="margin-left: 10px;padding-left: 5px;">').appendTo(in_row_0);
+        $('<input type="text" name="item_name" data-value="radiobox" style="margin-left: 10px;padding-left: 5px;">').appendTo(in_row_0);
         $('<div style="line-height: 10px">&nbsp</div>').appendTo(row);
 
         var in_row_1 = $('<div class="obj_table"></div>').appendTo(row);
@@ -669,7 +669,7 @@
                 '<label name="lab_value" style="margin-left: 7px;"></label>' +
                 '<a class="radio_delete" style="text-decoration: none;">&nbsp x</a></div>').appendTo(row);
 
-        $('<input type="button" class="obj_ok_btn btn btn-warning" data-value="radio" value="確定">').appendTo(row);
+        $('<input type="button" class="obj_ok_btn btn btn-warning" data-value="radiobox" value="確定">').appendTo(row);
     };
 
     //========================================================

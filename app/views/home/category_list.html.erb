@@ -19,8 +19,8 @@
               <% end %>
             </td>
 
-            <td style="width:15% ;margin-top: -3px"><input type="button" class="category_edit_btn btn btn-primary" style="font-size: 18px" value="編輯" data-value="<%= x.object_id %>"></td>
-            <td style="width:15%"><input type="button" class="category_open_btn btn btn-primary" style="font-size: 18px" value="啟用" data-value="<%= x.object_id %>"></td>
+            <td style="width:15% ;margin-top: -3px"><input type="button" class="category_edit_btn btn btn-primary" style="font-size: 18px" value="編輯" data-value="<%= x._id %>"></td>
+            <td style="width:15%"><input type="button" class="category_open_btn btn btn-primary" style="font-size: 18px" value="啟用" data-value="<%= x._id %>"></td>
           </tr>
       <% else %>
           <tr style="font-size: 20px;min-width: 600px; padding: 10px 15px 10px 15px;line-height: 32px">
@@ -30,8 +30,8 @@
                 未啟用
               <% end %>
             </td>
-            <td style="width:15% ;margin-top: -3px"><input type="button" class="category_edit_btn btn btn-primary" style="font-size: 18px" value="編輯" data-value="<%= x.object_id %>"></td>
-            <td style="width:15%"><input type="button" class="category_open_btn btn btn-primary" style="font-size: 18px" value="啟用" data-value="<%= x.object_id %>"></td>
+            <td style="width:15% ;margin-top: -3px"><input type="button" class="category_edit_btn btn btn-primary" style="font-size: 18px" value="編輯" data-value="<%= x._id %>"></td>
+            <td style="width:15%"><input type="button" class="category_open_btn btn btn-primary" style="font-size: 18px" value="啟用" data-value="<%= x._id %>"></td>
           </tr>
       <% end %>
   <% end %>
