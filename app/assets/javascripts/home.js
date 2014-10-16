@@ -7,9 +7,9 @@
  */
 
 //= require jquery
-//= require jquery-ui/sortable
+// require jquery-ui/sortable
 //= require jquery_ujs
-//= require kendo/kendo.web.min
+// require kendo/kendo.web.min
 
 
 
