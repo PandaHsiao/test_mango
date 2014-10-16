@@ -39,6 +39,7 @@
             } else if (this_url == '/home/curio_list') {
                 $("#ti2_sub").animate({'height':'48','border-width':'1'});
                 $("#sub_curio_list").addClass('now');
+                bind_event();
             }
         }).fail(function(){ alert('oops! 出現錯誤了!') });
     });
@@ -56,6 +57,8 @@
             $("#right_partial").html(response.partial);
 
             if (this_url == '/home/index'){
+                bind_event();
+            } else if (this_url == '/home/curio_list'){
                 bind_event();
             }
         }).fail(function(){ alert('oops! 出現錯誤了!') });

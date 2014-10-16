@@ -1,0 +1,16 @@
+<% self.formats = [:json, :html] %>
+
+<div name="item" data-value="select">
+  <label name="item_name"><%= @name %></label>
+  </br>
+  <select >
+    <% @data.each_with_index do |x,i| %>
+        <% if @value.include? i.to_s %>
+            <option disabled='true' selected='true' value="<%= i %>"><%= x %></option>
+        <% else %>
+            <option disabled='true' value="<%= i %>"><%= x %></option>
+        <% end %>
+    <% end %>
+  </select>
+  </br></br>
+</div>

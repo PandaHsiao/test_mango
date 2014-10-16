@@ -7,9 +7,10 @@
  */
 
 //= require jquery
+//= require jquery-ui/sortable
 //= require jquery_ujs
 //= require kendo/kendo.web.min
-//= require jquery.ui.sortable
+
 
 
 //========================================================
@@ -20,7 +21,7 @@ function bind_event(){
         $.get('/home/new_category.json').done(function(response){
             //location.href = '/home/create_category';
             $("#ti1_sub a.now").removeClass('now');
-            $("#sub_new_category").addClass('now')
+            $("#sub_new_category").addClass('now');
             var state = {url:'/home/new_category'};
             window.history.pushState(state,'', '/home/new_category');
             $("#right_partial").html(response.partial);

@@ -1,46 +1,92 @@
 <% self.formats = [:json, :html] %>
 
 <h4></h4>
-<h4>yo~  所有類別都在這裡喔~<span style="margin-left: 20px;color:red">提醒您~  編輯類別請特別小心~</span></h4>
+<h4>yo~ 所有類別都在這裡喔~<span style="margin-left: 20px;color:red">提醒您~  編輯類別請特別小心~</span></h4>
 
 <input type="button" class="new_category btn btn-danger" style="font-size: 18px; border: #ac381e;margin-bottom: 8px" id="new_category" value="新增類別">
 </br>
 
+<div class="div_table" style="border: #E0E0E0 1px solid;display: inline-block;margin-top: 2px;padding: 10px 10px 10px 10px">
 
-<table style="border: #E0E0E0 1px solid;display: inline-block;margin-top: 2px">
+  <div class="div_tr" style="font-size: 18px;">
+    <div class="div_td"> 序號</div>
+    <div class="div_td"> 類別名稱</div>
+    <div class="div_td"> 狀態</div>
+    <div class="div_td"></div>
+    <div class="div_td"></div>
+    <div class="div_td"></div>
+  </div>
+
+
   <% @categorys.each_with_index do |x, index| %>
-      <% if index % 2 == 1%>
-          <tr style="font-size: 20px;min-width: 600px; background-color: #eaf4f9; padding: 10px 15px 10px 15px;line-height: 32px">
 
-            <td style="width: 50%"><%= x.name %></td>
-            <td style="width: 20%">
+      <% if index % 2 == 1 %>
+          <div class="div_tr" style="font-size: 18px;min-width: 600px; background-color: #eaf4f9; padding: 5px 10px 5px 10px;line-height: 40px">
+            <div class="div_td"> <%= index + 1 %>  </div>
+            <div class="div_td"> <%= x.name %> </div>
+            <div class="div_td">
               <% if x.status.blank? || x.status == '0' %>
-                未啟用
-              <% end %>
-            </td>
+                  未啟用
+              <% else %>
+                  啟用中
+              <% end %> </div>
+            <div class="div_td">
+              <input type="button" class="btn btn-primary btn_category_edit" style="font-size: 14px" value="編輯" data-value="<%= x._id %>">
+            </div>
+            <div class="div_td">
+              <input type="button" class="btn btn-primary btn_category_switch" style="font-size: 14px" value="啟用" data-value="<%= x._id %>">
+            </div>
+            <div class="div_td">
+              <input type="button" class="btn btn-primary btn_category_delete" style="font-size: 14px" value="刪除" data-value="<%= x._id %>">
+            </div>
+          </div>
 
-            <td style="width:15% ;margin-top: -3px"><input type="button" class="category_edit_btn btn btn-primary" style="font-size: 18px" value="編輯" data-value="<%= x._id %>"></td>
-            <td style="width:15%"><input type="button" class="category_open_btn btn btn-primary" style="font-size: 18px" value="啟用" data-value="<%= x._id %>"></td>
-          </tr>
       <% else %>
-          <tr style="font-size: 20px;min-width: 600px; padding: 10px 15px 10px 15px;line-height: 32px">
-            <td style="width: 50%"><%= x.name %></td>
-            <td style="width: 20%">
+          <div class="div_tr" style="font-size: 18px;min-width: 600px;line-height: 40px">
+            <div class="div_td"> <%= index + 1 %>  </div>
+            <div class="div_td"> <%= x.name %> </div>
+            <div class="div_td">
               <% if x.status.blank? || x.status == '0' %>
-                未啟用
-              <% end %>
-            </td>
-            <td style="width:15% ;margin-top: -3px"><input type="button" class="category_edit_btn btn btn-primary" style="font-size: 18px" value="編輯" data-value="<%= x._id %>"></td>
-            <td style="width:15%"><input type="button" class="category_open_btn btn btn-primary" style="font-size: 18px" value="啟用" data-value="<%= x._id %>"></td>
-          </tr>
+                  未啟用
+              <% else %>
+                  啟用中
+              <% end %> </div>
+            <div class="div_td">
+              <input type="button" class="btn btn-primary btn_category_edit" style="font-size: 14px" value="編輯" data-value="<%= x._id %>">
+            </div>
+            <div class="div_td">
+              <input type="button" class="btn btn-primary btn_category_switch" style="font-size: 14px" value="啟用" data-value="<%= x._id %>">
+            </div>
+            <div class="div_td">
+              <input type="button" class="btn btn-primary btn_category_delete" style="font-size: 14px" value="刪除" data-value="<%= x._id %>">
+            </div>
+          </div>
       <% end %>
   <% end %>
-</table>
+
+</div>
+
 
 <script>
 
-    $(".category_edit_btn").click(function(){
+    $(".category_edit_btn").click(function () {
         //alert($(this).data('value'))
+    });
+
+
+    $(".btn_category_delete").click(function () {
+
+        if (confirm("確定要刪除嗎?")) {
+            $.getJSON('/home/delete_category', {
+                category_id: $(this).data('value')
+            }).done(function (response) {
+                if (response.result) {
+                    alert('刪除項目 ' + response.data + ' 成功');
+                    $("#right_partial").html(response.partial);
+                    bind_event();
+                } else { alert('刪除失敗') }
+            }).fail(function () { alert('刪除失敗') });
+        }
     });
 
 

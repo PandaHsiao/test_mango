@@ -9,7 +9,20 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+ * require_tree .
  */
 
 
+
+.font_14 {
+    font-size: 14px;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.margin-20 {
+  margin-left: 20px;
+  margin-right: 20px;
+}

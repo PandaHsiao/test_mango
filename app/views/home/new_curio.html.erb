@@ -16,8 +16,14 @@
 <script>
 
     $("#save_data").click(function(){
+
+        if ($("#category_select_new").val() == null){
+            return false;
+        }
+
         var json_array = [];
         var category_id_item = {};
+
         category_id_item["category_id"] = $("#category_select_new").val();
         json_array.push(category_id_item);
 
@@ -40,7 +46,6 @@
                     var textbox_item = {};
                     textbox_item["textbox_" + item_name] = $(this).val();
                     json_array.push(textbox_item);
-                    alert(textbox_item["textbox_" + item_name] );
                 });
             } else if (element_type == 'textarea'){
                 var item_name;
@@ -52,7 +57,6 @@
                     var textarea_item = {};
                     textarea_item["textarea_" + item_name] = $(this).val();
                     json_array.push(textarea_item);
-                    alert(textarea_item["textarea_" + item_name]);
                 });
             } else if (element_type == 'checkbox'){
                 var item_name;
@@ -97,9 +101,19 @@
             cache: false,
             async: false,
             success: function(response){
-                if (response.success){
+                if (response.result){
                     alert(response.data)
-                    //$("#right_partial").html(response.partial);
+
+                    var state = {url:'/home/new_curio'};
+                    window.history.pushState(state,'', '/home/new_curio');
+
+                    $("#right_partial").html(response.partial);
+                    $('#category_select_sale').val(response.category_id);
+
+                    $("#ti2_sub a.now").removeClass('now');
+                    $("#sub_curio_list").addClass('now');
+
+                    bind_event();
                 }
                 else if (response.error){
                     alert(response.message)

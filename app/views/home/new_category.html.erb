@@ -172,9 +172,19 @@
             cache: false,
             async: false,
             success: function(response){
-                if (response.success){
+                if (response.result){
                     alert(response.data)
-                    //$("#right_partial").html(response.partial);
+                    var state = {url:'/home/index'};
+                    window.history.pushState(state,'', '/home/index');
+                    $("#right_partial").html(response.partial);
+
+                    $("#ti1_sub a.now").removeClass('now');
+                    $("#sub_category_list").addClass('now');
+
+                    bind_event();
+                }
+                else if (!response.result){
+                    alert(response.data)
                 }
                 else if (response.error){
                     alert(response.message)

@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-# bootstrap
-gem 'bootstrap-sass'
-
 # jquery-ui-rails
 gem 'jquery-ui-rails'
+
+# bootstrap
+gem 'bootstrap-sass'
 
 gem 'devise'
 
@@ -28,7 +28,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 2.3.0'
 
 # Use kendo UI
 gem 'kendoui-rails'

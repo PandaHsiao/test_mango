@@ -1,5 +1,6 @@
 TestMongo::Application.routes.draw do
 
+
   devise_for :users
 
   #devise_for :users , :controllers => { :omniauth_callbacks => "omniauth_callbacks", confirmations: 'confirmations', :registrations => 'registrations', :passwords => 'passwords' }
@@ -64,17 +65,18 @@ TestMongo::Application.routes.draw do
   get  'home/new_category'
   post 'home/save_category'
   get  'home/modify_category'
+  get  'home/delete_category'
 
 
   get  'home/curio_list'
   get  'home/new_curio'
   post 'home/save_curio'
 
-   #= B_home======================================================
+  #= B_home =====================================
   get  'b_home/index'
 
-
-
+  #= Main =======================================
+  get 'main/index'
 
 
 
