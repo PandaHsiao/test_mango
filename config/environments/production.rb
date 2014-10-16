@@ -34,7 +34,7 @@ TestMongo::Application.configure do
 
   config.assets.compile = true
   #config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
-  config.assets.precompile =  ['*.js', '*.css','application.css.scss', 'home.css.scss','*.js.coffee','jquery-migrate-rails.js']
+  config.assets.precompile =  ['*.js', '*.css','bootstrap.css.scss'',application.css.scss', 'home.css.scss','*.js.coffee','jquery-migrate-rails.js']
 
 
 
