@@ -33,7 +33,12 @@ TestMongo::Application.configure do
   #config.assets.precompile += %w( bootstrap.css )
 
   config.assets.compile = true
-  config.assets.precompile =  ['*.js', '*.css', '*.css.scss','*.js.coffee']
+  config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
+  config.assets.precompile =  ['*.js', '*.css', '*.css.scss','*.js.coffee','jquery-migrate-rails.js']
+
+
+
+
 
   # Generate digests for assets URLs.
   config.assets.digest = true
