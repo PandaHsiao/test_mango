@@ -1,6 +1,5 @@
-
 <h4></h4>
-<h4>選擇類別： <%= select("custom_new", "category_id", @categorys_option,{}, {:id => "category_select_sale"}) %></h4>
+<h4>選擇類別： <%= select("custom_new", "category_id", @categorys_option, {}, {:id => "category_select_sale"}) %></h4>
 
 <input type="button" class="new_category btn btn-danger" style="font-size: 18px; border: #ac381e;margin-bottom: 8px" id="new_sale" value="新增商品">
 
@@ -10,44 +9,100 @@
 </div>
 
 
-
 <script>
-  // write in home.js
+    // write in home.js
 
-  // curio_list.html.erb
-  $("#category_select_sale").change(function(){
-      $.ajax({
-          url: "/home/get_curios_view.json",
-          type: 'POST',
-          data:  {object_id:$(this).val()},
-          cache: false,
-          success: function(response){
-              $("#r_b_partial_curios").html(response.partial);
-              bind_event();
-          },
-          error: function(){
-              alert('oops! 出現錯誤了!');
-          }
-      });
-  });
+    $(function(){
+        put_curios_array(<%= raw @curios_array.to_json %>);
+    });
+
+    function put_curios_array(curios_array){
+        data_array = curios_array
+
+        var optInit = getOptionsFromForm();
+
+        $("#Pagination").pagination(data_array.length, optInit);
+    };
+
+    $("#setoptions").click(function(){
+        var opt = getOptionsFromForm();
+        // Re-create pagination content with new parameters
+        $("#Pagination").pagination(data_array.length, opt);
+    });
+
+    function pageselectCallback(page_index, jq){
+        // Get number of elements per pagionation page from form
+        $("#curios_list").html('');
+        var items_per_page = $('#items_per_page').val();
+        var max_elem = Math.min((page_index+1) * items_per_page, data_array.length);
+        var newcontent = '';
+
+        for(var i=page_index*items_per_page;i<max_elem;i++) {
+            var div = $('<div class="div_inline curio_show_small" data-id="' + data_array[i][0]+ '"></div>');
+            var img = $('<img class="curio_img_small" alt=""  src="" title="">');
+            var info = $('<div class="curio_info">' + data_array[i][1] + '</div>');
+            img.appendTo(div);
+            info.appendTo(div);
+            div.appendTo($('#curios_list'));
+        }
+
+        return false;
+    }
+
+    function getOptionsFromForm(data_array){
+
+        var opt = {callback: pageselectCallback};
+        // Collect options from the text fields - the fields are named like their option counterparts
+        $("input:text").each(function(){
+            opt[this.name] = this.className.match(/numeric/) ? parseInt(this.value) : this.value;
+        });
+        // Avoid html injections
+        var htmlspecialchars ={ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;"}
+        $.each(htmlspecialchars, function(k,v){
+            opt.prev_text = opt.prev_text.replace(k,v);
+            opt.next_text = opt.next_text.replace(k,v);
+        })
+        return opt;
+    }
+
+//-----------------------------------------------------
+
+
+    // curio_list.html.erb
+    $("#category_select_sale").change(function () {
+        $.ajax({
+            url: "/home/get_curios_view.json",
+            type: 'POST',
+            data: {object_id: $(this).val()},
+            cache: false,
+            success: function (response) {
+                $("#r_b_partial_curios").html(response.partial);
+                bind_event();
+                put_curios_array(response.curios_array);
+            },
+            error: function () {
+                alert('oops! 出現錯誤了!');
+            }
+        });
+    });
 </script>
 
 
 <script>
-//    $("#curios_table td").click(function(){
-//        $.ajax({
-//            url: "/home/get_article_view.json",
-//            type: 'POST',
-//            data:  {object_id:$(this).data("value")},
-//            cache: false,
-//            success: function(response){
-//                //$("#r_b_partial_curios").html(response.partial);
-//            },
-//            error: function(){
-//                alert('oops! 出現錯誤了!');
-//            }
-//        });
-//    });
+    //    $("#curios_table td").click(function(){
+    //        $.ajax({
+    //            url: "/home/get_article_view.json",
+    //            type: 'POST',
+    //            data:  {object_id:$(this).data("value")},
+    //            cache: false,
+    //            success: function(response){
+    //                //$("#r_b_partial_curios").html(response.partial);
+    //            },
+    //            error: function(){
+    //                alert('oops! 出現錯誤了!');
+    //            }
+    //        });
+    //    });
 
 </script>
 

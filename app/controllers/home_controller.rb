@@ -285,6 +285,13 @@ class HomeController < ApplicationController
 
     @view_string = get_view_curios(select_articles, select_category)
 
+    @curios_array = []
+
+    select_articles.each do |x|
+      curio = [x.object_id, x.title]
+      @curios_array.push(curio)
+    end
+
 
     respond_to do |format|
       format.html {
@@ -293,7 +300,7 @@ class HomeController < ApplicationController
         return
       }
       format.json {
-        render json: {:partial => render_to_string('home/curio_list', :layout => false, :locals => {:categorys_option => @categorys_option, :view_string => @view_string}, :formats => [:html])}, :status => 200
+        render json: {:partial => render_to_string('home/curio_list', :layout => false, :locals => {:categorys_option => @categorys_option, :view_string => @view_string, :curios_array => @curios_array  }, :formats => [:html])}, :status => 200
         return
       }
     end
@@ -472,11 +479,19 @@ class HomeController < ApplicationController
 
     view_string = get_view_curios(select_articles, select_category)
 
-    render json: {:partial => view_string}
+    curios_array = []
+
+    select_articles.each do |x|
+      curio = [x.object_id, x.title]
+      curios_array.push(curio)
+    end
+
+    render json: {:partial => view_string, :curios_array => curios_array}
   end
 
   def get_view_curios(select_articles, select_category)
-    view_string = nil
+    view_string = ''
+
     @curios = select_articles
 
     if select_category.present?
@@ -486,8 +501,8 @@ class HomeController < ApplicationController
 
 
     respond_to do |format|
-      format.html { view_string = view_string + render_to_string('home/curios', :layout => false, :locals => {:curios => @curios}) }
-      format.json { view_string = view_string + render_to_string('home/curios', :layout => false, :locals => {:curios => @curios}, :formats => [:html]) }
+      format.html { view_string = view_string + render_to_string('home/curios', :layout => false, :locals => {:curios => @curios }) }
+      format.json { view_string = view_string + render_to_string('home/curios', :layout => false, :locals => {:curios => @curios }, :formats => [:html]) }
     end
 
     return view_string
@@ -505,7 +520,7 @@ class HomeController < ApplicationController
   end
 
   def get_view_article(select_article)
-    view_string = nil
+    view_string = ''
 
     select_category = CategoryColumn.where(:_id => select_article.cid).first
 
@@ -523,14 +538,14 @@ class HomeController < ApplicationController
     @name = nil #item label name
 
     data_type = nil
-    view_string = nil
+    view_string = ''
 
     select_format.each_with_index do |x, i|
       obj_type = x['n']
 
       if obj_type == 'checkbox'
         if @data.present? && data_type.present?
-          view_string = "#{view_string} #{check_obj(@data, data_type, @name)}"
+          view_string = "#{view_string} #{parse_html_tag_for_query(@data, data_type, @name)}"
           @data.clear
           data_type = nil
         end
@@ -540,7 +555,7 @@ class HomeController < ApplicationController
         data_type = obj_type
       elsif obj_type == 'radiobox'
         if @data.present? && data_type.present?
-          view_string = "#{view_string} #{check_obj(@data, data_type, @name)}"
+          view_string = "#{view_string} #{parse_html_tag_for_query(@data, data_type, @name)}"
           @data.clear
           data_type = nil
         end
@@ -550,7 +565,7 @@ class HomeController < ApplicationController
         data_type = obj_type
       elsif obj_type == 'select'
         if @data.present? && data_type.present?
-          view_string = "#{view_string} #{check_obj(@data, data_type, @name)}"
+          view_string = "#{view_string} #{parse_html_tag_for_query(@data, data_type, @name)}"
           @data.clear
           data_type = nil
         end
@@ -562,8 +577,34 @@ class HomeController < ApplicationController
         @data.push(x['v'])
 
         if i == select_format.length - 1
-          view_string = "#{view_string} #{check_obj(@data, data_type, @name)}"
+          view_string = "#{view_string} #{parse_html_tag_for_query(@data, data_type, @name)}"
         end
+      end
+    end
+
+    return view_string
+  end
+
+  def parse_html_tag_for_query(data, data_type, name)
+    @data = data
+    @name = name
+
+    view_string = ''
+
+    if data_type == 'checkbox'
+      respond_to do |format|
+        format.html { view_string = render_to_string('home/checkbox_query', :layout => false, :locals => {:data => @data, :name => @name}) }
+        format.json { view_string = render_to_string('home/checkbox_query', :layout => false, :locals => {:data => @data, :name => @name}, :formats => [:html]) }
+      end
+    elsif data_type == 'radiobox'
+      respond_to do |format|
+        format.html { view_string = render_to_string('home/radio_query', :layout => false, :locals => {:data => @data, :name => @name}) }
+        format.json { view_string = render_to_string('home/radio_query', :layout => false, :locals => {:data => @data, :name => @name}, :formats => [:html]) }
+      end
+    elsif data_type == 'select'
+      respond_to do |format|
+        format.html { view_string = render_to_string('home/select_query', :layout => false, :locals => {:data => @data, :name => @name}) }
+        format.json { view_string = render_to_string('home/select_query', :layout => false, :locals => {:data => @data, :name => @name}, :formats => [:html]) }
       end
     end
 
@@ -576,7 +617,7 @@ class HomeController < ApplicationController
     @name = nil #item label name
     @value = nil
     data_type = nil
-    view_string = nil
+    view_string = ''
 
     select_format.each_with_index do |x, i|
       obj_type = x['n']
@@ -704,7 +745,7 @@ class HomeController < ApplicationController
     @name = name
     @value = value
 
-    view_string = nil
+    view_string = ''
 
     if data_type == 'checkbox'
       respond_to do |format|
@@ -748,7 +789,7 @@ class HomeController < ApplicationController
   def get_category_view
     select_category = CategoryColumn.where(:_id => params[:object_id]).first
 
-    view_string = nil
+    view_string = ''
     if select_category.present?
       view_string = get_view_category(select_category['met_options'])
     end
@@ -761,7 +802,7 @@ class HomeController < ApplicationController
     @name = nil #item label name
 
     data_type = nil
-    view_string = nil #return use
+    view_string = '' #return use
 
     respond_to do |format|
       format.html { view_string = "#{view_string} #{render_to_string('home/title_style', :layout => false)}" }
@@ -842,7 +883,7 @@ class HomeController < ApplicationController
     @data = data
     @name = name
 
-    view_string = nil
+    view_string = ''
 
     if data_type == 'checkbox'
       respond_to do |format|

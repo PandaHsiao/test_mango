@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# jqgrid jquery plugin packaged for the rails asset pipeline
+#gem 'jqgrid-jquery-rails', '~> 4.5.201'
+
 # jquery-ui-rails
 gem 'jquery-ui-rails'
 

@@ -4,9 +4,14 @@
 
 
 
+/*
+*= require bootstrap
+*= require pagination
+* require kendo/kendo.common.min
+* require kendo/kendo.blueopal.min
 
-@import "bootstrap";
 
+*/
 .obj_area {
   margin-bottom: 20px;
   padding: 10px 5px 10px 10px;
@@ -197,6 +202,34 @@
   display: table-cell;
   padding-left: 10px;
   padding-right: 20px;
+}
+
+.div_inline {
+  display:inline-block;
+}
+
+.curio_show_small {
+  width: 245px;
+  height: auto;
+  border: 1px solid red;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.curio_img_small {
+  width: 220px;
+  height: 220px;
+}
+
+.curio_img_medim {
+  width: 220px;
+  height: 280px;
+}
+
+.curio_info {
+  width: 220px;
+  height: 100px;
+  margin: 0 auto;
 }
 
 

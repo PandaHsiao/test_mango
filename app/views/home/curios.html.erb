@@ -1,7 +1,39 @@
 <% self.formats = [:json, :html] %>
 
 
+<div id="curios_list" style="width: 1000px">
 
+</div>
+
+<br style="clear:both;"/>
+
+<div id="Pagination" class="pagination">
+</div>
+
+
+<!--------------------------------------------------------------------------------->
+
+<h3>Config form for pagination parameters</h3>
+<!-- This form is just to demonstrate the whole range of options and display styles. -->
+<form name="paginationoptions">
+  <p><label for="items_per_page">Number of items per
+    page</label><input type="text" value="5" name="items_per_page" id="items_per_page" class="numeric"/></p>
+
+  <p><label for="num_display_entries">Number of pagination links
+    shown</label><input type="text" value="10" name="num_display_entries" id="num_display_entries" class="numeric"/></p>
+
+  <p><label for="num">Number of start and end
+    points</label><input type="text" value="2" name="num_edge_entries" id="num_edge_entries" class="numeric"/></p>
+
+  <p><label for="prev_text">"Previous" label</label><input type="text" value="Prev" name="prev_text" id="prev_text"/>
+  </p>
+
+  <p><label for="next_text">"Next" label</label><input type="text" value="Next" name="next_text" id="next_text"/></p>
+  <input type="button" id="setoptions" value="Set options"/>
+</form>
+
+
+<!--------------------------------------------------------------------------------->
 
 <table id="curios_table" style="border: #E0E0E0 1px solid;display: inline-block;margin-top: 2px">
   <tr style="font-size: 20px;min-width: 600px; background-color: #015d83; color: ActiveBorder">
@@ -9,14 +41,15 @@
   </tr>
 
   <% @curios.each_with_index do |x, index| %>
-      <% if index % 2 == 1%>
+      <% if index % 2 == 1 %>
           <tr style="font-size: 20px;min-width: 600px; background-color: #eaf4f9; padding: 10px 15px 10px 15px;line-height: 32px">
-            <td data-value="<%= x._id %>" style="width: 100%; padding-left: 10px"><a><%= x.title %></a> </td>
+            <td data-value="<%= x._id %>" style="width: 100%; padding-left: 10px"><a><%= x.title %></a></td>
           </tr>
       <% else %>
           <tr style="font-size: 20px;min-width: 600px; padding: 10px 15px 10px 15px;line-height: 32px">
-            <td data-value="<%= x._id %>" style="width: 100%; padding-left: 10px"><a><%= x.title %></a> </td>
+            <td data-value="<%= x._id %>" style="width: 100%; padding-left: 10px"><a><%= x.title %></a></td>
           </tr>
       <% end %>
   <% end %>
 </table>
+
