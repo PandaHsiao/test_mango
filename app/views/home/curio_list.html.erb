@@ -1,12 +1,22 @@
 <h4></h4>
 <h4>選擇類別： <%= select("custom_new", "category_id", @categorys_option, {}, {:id => "category_select_sale"}) %></h4>
 
-<input type="button" class="new_category btn btn-danger" style="font-size: 18px; border: #ac381e;margin-bottom: 8px" id="new_sale" value="新增商品">
-
-
 <div style="width: 85%; margin-top: 0px" id="r_b_partial_curios">
-  <%= @view_string.html_safe %>
+  <%# @view_string.html_safe %>
 </div>
+
+<div id="curios_meta" style="width: 1000px; margin-top: 0px">
+  <%= @meta_view_string.html_safe %>
+</div>
+
+<input type="button" class="query_item_btn btn btn-danger" id="query_item_btn" value="商品過濾">
+
+<div id="curios" style="width: 1000px; margin-top: 10px">
+  <%= @curios_view_string.html_safe %>
+</div>
+
+
+
 
 
 <script>
@@ -18,15 +28,12 @@
 
     function put_curios_array(curios_array){
         data_array = curios_array
-
         var optInit = getOptionsFromForm();
-
         $("#Pagination").pagination(data_array.length, optInit);
     };
 
     $("#setoptions").click(function(){
         var opt = getOptionsFromForm();
-        // Re-create pagination content with new parameters
         $("#Pagination").pagination(data_array.length, opt);
     });
 
@@ -35,8 +42,6 @@
         $("#curios_list").html('');
         var items_per_page = $('#items_per_page').val();
         var max_elem = Math.min((page_index+1) * items_per_page, data_array.length);
-        var newcontent = '';
-
         for(var i=page_index*items_per_page;i<max_elem;i++) {
             var div = $('<div class="div_inline curio_show_small" data-id="' + data_array[i][0]+ '"></div>');
             var img = $('<img class="curio_img_small" alt=""  src="" title="">');
@@ -45,12 +50,10 @@
             info.appendTo(div);
             div.appendTo($('#curios_list'));
         }
-
         return false;
     }
 
     function getOptionsFromForm(data_array){
-
         var opt = {callback: pageselectCallback};
         // Collect options from the text fields - the fields are named like their option counterparts
         $("input:text").each(function(){
@@ -67,7 +70,6 @@
 
 //-----------------------------------------------------
 
-
     // curio_list.html.erb
     $("#category_select_sale").change(function () {
         $.ajax({
@@ -76,7 +78,8 @@
             data: {object_id: $(this).val()},
             cache: false,
             success: function (response) {
-                $("#r_b_partial_curios").html(response.partial);
+                $("#curios_meta").html(response.meta_view_string);
+                $("#curios").html(response.curios_view_string);
                 bind_event();
                 put_curios_array(response.curios_array);
             },
@@ -85,6 +88,71 @@
             }
         });
     });
+
+    $("#query_item_btn").on("click", function(){
+
+        var json_array = [];
+        var category_id_item = {};
+
+        category_id_item["category_id"] = $("#category_select_sale").val();
+        json_array.push(category_id_item);
+
+        $("#curios_meta").find("[name='item']").each(function(){
+            var element_type = $(this).data('value');
+
+
+            if (element_type == 'checkbox'){
+                var item_name;
+                $(this).find("[name='item_name']").each(function(){
+                    item_name = $(this).text();
+                });
+
+                var checked_item = {};
+                $(this).find("input:checked").each(function(index){
+                    checked_item["checkbox_" + item_name + "_" + index] = $(this).val();
+                });
+                json_array.push(checked_item);
+            } else if (element_type == 'radio'){
+                var item_name;
+                $(this).find("[name='item_name']").each(function(){
+                    item_name = $(this).text();
+                });
+
+                var radio_item = {};
+                $(this).find("input:checked").each(function(){
+                    radio_item["radiobox_" + item_name] = $(this).val();
+                });
+                json_array.push(radio_item);
+            } else if (element_type == 'select'){
+                var item_name;
+                $(this).find("[name='item_name']").each(function(){
+                    item_name = $(this).text();
+                });
+
+                var select_item = {};
+                $(this).find("option:selected").each(function(){
+                    select_item["select_" + item_name] = $(this).val();
+                });
+                json_array.push(select_item);
+            }
+        });
+
+        $.ajax({
+            url: "/home/query_curio_by_filter.json",
+            type: 'POST',
+            data: {filter_data: json_array},
+            cache: false,
+            success: function (response) {
+                $("#curios").html(response.curios_view_string);
+                put_curios_array(response.curios_array);
+            },
+            error: function () {
+                alert('oops! 出現錯誤了!');
+            }
+        });
+    });
+
+
 </script>
 
 

@@ -28,7 +28,28 @@ class Category
 
   embeds_many :category_datas
 
-  def self.query_special_field(f, data)
+  def self.query_special_field_test(f, data)
     where(category_datas: {'$elemMatch' => {n: f, v: data}})
+  end
+
+  def self.query_special_field(category_id, category_filters)
+
+    type_array = []
+    name_array = []
+    value_array = []
+
+    query_array = []
+
+    category_filters.each do |x|
+
+      query_hash = {'$elemMatch' => {t: x['type'], n: x['name'], v: x['value']}}
+      query_array.push(query_hash)
+      #type_array.push()
+      #name_array.push()
+      #value_array.push()
+    end
+
+    #where(:cid => category_id, category_datas: {'$and' => query_array})
+    where(:cid => category_id, category_datas: {'$all' =>query_array})
   end
 end

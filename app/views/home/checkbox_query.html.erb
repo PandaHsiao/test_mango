@@ -1,11 +1,14 @@
 <% self.formats = [:json, :html] %>
 
 <div name="item" data-value="checkbox">
-  <label name="item_name"><%= @name %></label>
-  </br>
-  <% @data.each_with_index do |x,i| %>
-      <input type="checkbox" name="checkbox_group_<%= @name %>" value="<%= i %>"> <%= x %>
-  <% end %>
-  </br></br>
+
+  <div class="query_item_title div_inline" name="item_name"><%= @name %>：</div>
+  <div class="query_item_block div_inline">
+    <% @data.each_with_index do |x, i| %>
+        <label class="query_item">
+          <input type="checkbox" name="checkbox_group_<%= @name %>" value="<%= i %>"><%= x %>
+        </label>
+    <% end %>
+  </div>
 </div>
 

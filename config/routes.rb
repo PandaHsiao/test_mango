@@ -39,6 +39,8 @@ TestMongo::Application.routes.draw do
     get  'home/curio_list'
     get  'home/new_curio'
     post 'home/save_curio'
+    post 'home/query_curio_by_filter'
+
     post 'home/get_curios_view'        #jquery partial view
 
     post 'home/get_article_view'       #jquery partial view

@@ -265,12 +265,15 @@ class HomeController < ApplicationController
   #   Func   : save new curio data to db
 
   def curio_list
+    @categorys_option = []
+    @curios_view_string = nil
+    @meta_view_string = nil
+    @curios_array = []
+
     categorys = CategoryColumn.all.entries
 
-    @categorys_option = []
-    first_category_id = nil
     if categorys.present?
-
+      first_category_id = nil
 
       categorys.each do |x|
         if first_category_id.blank?
@@ -278,20 +281,24 @@ class HomeController < ApplicationController
         end
         @categorys_option.push([x.name, x['_id']])
       end
+
+      if first_category_id.present?
+        select_articles = Category.where(:cid => first_category_id)
+        select_category = CategoryColumn.where(:_id => first_category_id).first
+
+        @curios_view_string = get_view_curios(select_articles)
+
+        select_format = select_category['met_options']
+        @meta_view_string = parse_meta_for_filter(select_format)
+
+        if select_articles.present?
+          select_articles.each do |x|
+            curio = [x.object_id, x.title]
+            @curios_array.push(curio)
+          end
+        end
+      end
     end
-
-    select_articles = Category.where(:cid => first_category_id)
-    select_category = CategoryColumn.where(:_id => first_category_id).first
-
-    @view_string = get_view_curios(select_articles, select_category)
-
-    @curios_array = []
-
-    select_articles.each do |x|
-      curio = [x.object_id, x.title]
-      @curios_array.push(curio)
-    end
-
 
     respond_to do |format|
       format.html {
@@ -300,7 +307,17 @@ class HomeController < ApplicationController
         return
       }
       format.json {
-        render json: {:partial => render_to_string('home/curio_list', :layout => false, :locals => {:categorys_option => @categorys_option, :view_string => @view_string, :curios_array => @curios_array  }, :formats => [:html])}, :status => 200
+        #TODO NO category , render other view
+
+        if @categorys_option.blank?
+          render json: {:partial => render_to_string('home/no_category', :layout => false, :formats => [:html]) }
+        else
+          render json: {:partial => render_to_string('home/curio_list', :layout => false,
+                                                     :locals => {:categorys_option => @categorys_option,
+                                                                 :curios_view_string => @curios_view_string,
+                                                                 :meta_view_string => @meta_view_string,
+                                                                 :curios_array => @curios_array}, :formats => [:html])}, :status => 200
+        end
         return
       }
     end
@@ -428,8 +445,6 @@ class HomeController < ApplicationController
     @categorys_option = []
     first_category_id = nil
     if categorys.present?
-
-
       categorys.each do |x|
         if first_category_id.blank?
           first_category_id = x['_id']
@@ -441,7 +456,83 @@ class HomeController < ApplicationController
     select_articles = Category.where(:cid => category_id)
     select_category = CategoryColumn.where(:_id => category_id).first
 
-    @view_string = get_view_curios(select_articles, select_category)
+    @curios_view_string = get_view_curios(select_articles)
+
+    @meta_view_string = nil
+    if select_category.present?
+      select_format = select_category['met_options']
+      @meta_view_string = parse_meta_for_filter(select_format)
+    end
+
+    @curios_array = []
+
+    select_articles.each do |x|
+      curio = [x.object_id, x.title]
+      @curios_array.push(curio)
+    end
+
+
+    respond_to do |format|
+      format.json {
+        render json: {:result => true, :data => '新增項目成功', :category_id => category_id,
+                      :partial => render_to_string('home/curio_list', :layout => false,
+                                                   :locals => {:categorys_option => @categorys_option, :curios_view_string => @curios_view_string, :meta_view_string => @meta_view_string, :curios_array => @curios_array}, :formats => [:html])}, :status => 200
+        return
+      }
+    end
+  end
+
+  def query_curio_by_filter
+    filter_data = params[:filter_data]
+
+    if filter_data.blank?
+      query_curio_response(false, nil)
+    else
+      querys_curios = parse_filter_data_for_query(filter_data)
+
+      if querys_curios.present?
+        query_curio_response(true, querys_curios)
+      else
+        query_curio_response(false, nil)
+      end
+    end
+  end
+
+  def query_curio_response(resutl, querys_curios)
+    #categorys = CategoryColumn.all.entries
+    #
+    #@categorys_option = []
+    #first_category_id = nil
+    #if categorys.present?
+    #  categorys.each do |x|
+    #    if first_category_id.blank?
+    #      first_category_id = x['_id']
+    #    end
+    #    @categorys_option.push([x.name, x['_id']])
+    #  end
+    #end
+
+    #category_id = nil
+    #if querys_curios.present?
+    #  category_id = querys_curios.first.cid
+    #end
+
+    #select_category = CategoryColumn.where(:_id => category_id).first
+
+    @curios_view_string = get_view_curios(querys_curios)
+
+    #@meta_view_string = nil
+    #if select_category.present?
+    #  select_format = select_category['met_options']
+    #  @meta_view_string = parse_meta_for_filter(select_format)
+    #end
+
+    @curios_array = []
+
+    querys_curios.each do |x|
+      curio = [x.object_id, x.title]
+      @curios_array.push(curio)
+    end
 
 
     respond_to do |format|
@@ -451,12 +542,53 @@ class HomeController < ApplicationController
         return
       }
       format.json {
-        render json: {:result => true, :data => '新增項目成功', :category_id => category_id, :partial => render_to_string('home/curio_list', :layout => false, :locals => {:categorys_option => @categorys_option, :view_string => @view_string}, :formats => [:html])}, :status => 200
+        #render json: {:result => true, :data => '查詢成功', :curios_view_string => curios_view_string, :meta_view_string => meta_view_string}
+        render json: {:result => true, :data => '查詢成功', :curios_array => @curios_array, :curios_view_string => @curios_view_string}
         return
       }
     end
 
+  end
 
+  def parse_filter_data_for_query(filter_data)
+    category_filters = []
+    category_id = nil
+
+    begin
+      filter_data.each do |x|
+        #sequence = x[0]   not need to save sequence just say x[0] what is
+        obj = x[1]
+        obj_array = obj.to_a
+
+        obj_array.each do |item|
+          obj_type = item[0]
+
+          if obj_type == 'category_id'
+            category_id = item[1].strip
+          elsif obj_type.include?('checkbox')
+            arr_name = obj_type.split('_')
+            arr_name[1].slice! '：'
+            filter_hash = {'type' => 'checkbox', 'name' => arr_name[1], 'value' => item[1].strip}
+            category_filters.push(filter_hash)
+          elsif obj_type.include?('radiobox')
+            arr_name = obj_type.split('_')
+            arr_name[1].slice! '：'
+            filter_hash = {'type' => 'radiobox', 'name' => arr_name[1], 'value' => item[1].strip}
+            category_filters.push(filter_hash)
+          elsif obj_type.include?('select')
+            arr_name = obj_type.split('_')
+            arr_name[1].slice! '：'
+            filter_hash = {'type' => 'select', 'name' => arr_name[1], 'value' => item[1].strip}
+            category_filters.push(filter_hash)
+          end
+        end
+      end
+
+      querys_curios = Category.query_special_field(category_id, category_filters).all.entries
+      return querys_curios
+    rescue => e
+      return nil
+    end
   end
 
 
@@ -477,7 +609,13 @@ class HomeController < ApplicationController
     select_articles = Category.where(:cid => cid)
     select_category = CategoryColumn.where(:_id => cid).first
 
-    view_string = get_view_curios(select_articles, select_category)
+    @curios_view_string = get_view_curios(select_articles)
+
+    @meta_view_string = nil
+    if select_category.present?
+      select_format = select_category['met_options']
+      @meta_view_string = parse_meta_for_filter(select_format)
+    end
 
     curios_array = []
 
@@ -486,23 +624,17 @@ class HomeController < ApplicationController
       curios_array.push(curio)
     end
 
-    render json: {:partial => view_string, :curios_array => curios_array}
+    render json: {:meta_view_string => @meta_view_string, :curios_view_string => @curios_view_string, :curios_array => curios_array}
   end
 
-  def get_view_curios(select_articles, select_category)
+  def get_view_curios(select_articles)
     view_string = ''
 
     @curios = select_articles
 
-    if select_category.present?
-      select_format = select_category['met_options']
-      view_string = parse_meta_for_filter(select_format)
-    end
-
-
     respond_to do |format|
-      format.html { view_string = view_string + render_to_string('home/curios', :layout => false, :locals => {:curios => @curios }) }
-      format.json { view_string = view_string + render_to_string('home/curios', :layout => false, :locals => {:curios => @curios }, :formats => [:html]) }
+      format.html { view_string = view_string + render_to_string('home/curios', :layout => false, :locals => {:curios => @curios}) }
+      format.json { view_string = view_string + render_to_string('home/curios', :layout => false, :locals => {:curios => @curios}, :formats => [:html]) }
     end
 
     return view_string
@@ -538,8 +670,7 @@ class HomeController < ApplicationController
     @name = nil #item label name
 
     data_type = nil
-    view_string = ''
-
+    view_string =''
     select_format.each_with_index do |x, i|
       obj_type = x['n']
 
