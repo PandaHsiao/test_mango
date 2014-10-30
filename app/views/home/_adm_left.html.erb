@@ -24,7 +24,7 @@
         $.get(this_url + '.json').done(function(response){
             $(".sub_choice a.now").removeClass('now');
             $("#left_sidebar > a").removeClass('now');
-            $(".sub_choice").animate({'height':'0','border-width':'0'});
+            //$(".sub_choice").animate({'height':'0','border-width':'0'});
             t.addClass('now')
 
             var state = {url:this_url};
@@ -32,12 +32,12 @@
             $("#right_partial").html(response.partial);
 
             if (this_url == '/home/index') {
-                $("#ti1_sub").animate({'height':'48','border-width':'1'});
+                //$("#ti1_sub").animate({'height':'48','border-width':'1'});
                 $("#sub_category_list").addClass('now');
                 bind_event();
 
             } else if (this_url == '/home/curio_list') {
-                $("#ti2_sub").animate({'height':'48','border-width':'1'});
+                //$("#ti2_sub").animate({'height':'48','border-width':'1'});
                 $("#sub_curio_list").addClass('now');
                 bind_event();
             }
@@ -50,8 +50,12 @@
         var t = $(this);
         var this_url = t.data('value');
         $.get(this_url + '.json').done(function(response){
+            $(".item").removeClass('now');
             $(".sub_choice a.now").removeClass('now');
             t.addClass('now')
+
+            t.closest('div').prev(".item").addClass('now')
+
             var state = {url:this_url};
             window.history.pushState(state,'', this_url);
             $("#right_partial").html(response.partial);

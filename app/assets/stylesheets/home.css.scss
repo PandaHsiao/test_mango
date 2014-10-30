@@ -48,7 +48,7 @@
 .obj_create_btn {
   font-size: 18px;
   margin-bottom: 50px;
-  margin-left: 400px;
+  margin-left: 350px;
 }
 
 .obj_delete_btn {
@@ -89,7 +89,7 @@
   margin-bottom: 20px;
   padding: 10px 5px 10px 10px;
   border: #c0c0c0 3px ridge;
-  width: 500px;
+  width: 450px;
   position: relative;
   min-height: 65px;
 }
@@ -158,12 +158,13 @@
 /////////////////////////////////////////////////////////////
 
 .sub_choice {
-  border: 1px solid #E0E0E0;
+  //border: 1px solid #E0E0E0;
   width: 90px;
   text-align: center;
   overflow: hidden;
   margin-bottom: 10px;
   margin-left: 10px;
+  height: auto;
 }
 
 .sub_choice .now {
@@ -175,7 +176,7 @@
   cursor: pointer;
   color: #000000;
   display: block;
-  border: 1px solid rgb(190,190,190);
+  //border: 1px solid rgb(190,190,190);
 }
 
 .item {

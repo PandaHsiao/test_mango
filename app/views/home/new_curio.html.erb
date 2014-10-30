@@ -3,7 +3,7 @@
 <h4>選擇類別： <%= select("custom_new", "category_id", @categorys_option,{}, {:id => "category_select_new"}) %></h4>
 
 
-<div style="width: 85%; margin-top: 30px" id="r_b_partial_new">
+<div style="margin-top: 30px" id="r_b_partial_new">
   <%# render :template => 'home/category_list', :layout => false %>
   <%= @view_string.html_safe %>
 </div>

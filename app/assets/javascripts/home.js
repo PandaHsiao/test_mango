@@ -99,23 +99,23 @@ function switch_sidebar(url){
     //$("#ti1_sub").css({'height':'0','border-width':'0'})
     //$("#ti2_sub").css({'height':'0','border-width':'0'})
 
-    $(".sub_choice").css({'height':'0','border-width':'0'})
+    //$(".sub_choice").css({'height':'0','border-width':'0'})
 
     if (url == '/home/index') {
         $("#ti1").addClass('now');
-        $('#ti1_sub').css({'height':'auto','border-width':'1'})
+        //$('#ti1_sub').css({'height':'auto','border-width':'1'})
         $("#sub_category_list").addClass('now');
     } else if (url == '/home/new_category'){
         $("#ti1").addClass('now');
-        $('#ti1_sub').css({'height':'auto','border-width':'1'})
+        //$('#ti1_sub').css({'height':'auto','border-width':'1'})
         $("#sub_new_category").addClass('now');
     } else if (url == '/home/curio_list') {
         $("#ti2").addClass('now');
-        $('#ti2_sub').css({'height':'auto','border-width':'1'})
+        //$('#ti2_sub').css({'height':'auto','border-width':'1'})
         $("#sub_curio_list").addClass('now');
     } else if (url == '/home/new_curio') {
         $("#ti2").addClass('now');
-        $('#ti2_sub').css({'height':'auto','border-width':'1'})
+        //$('#ti2_sub').css({'height':'auto','border-width':'1'})
         $("#sub_new_curio").addClass('now');
     }
 

@@ -1,17 +1,14 @@
 <h4></h4>
 <h4>選擇類別： <%= select("custom_new", "category_id", @categorys_option, {}, {:id => "category_select_sale"}) %></h4>
 
-<div style="width: 85%; margin-top: 0px" id="r_b_partial_curios">
-  <%# @view_string.html_safe %>
-</div>
 
-<div id="curios_meta" style="width: 1000px; margin-top: 0px">
+<div id="curios_meta" style="margin-top: 0px">
   <%= @meta_view_string.html_safe %>
 </div>
 
 <input type="button" class="query_item_btn btn btn-danger" id="query_item_btn" value="商品過濾">
 
-<div id="curios" style="width: 1000px; margin-top: 10px">
+<div id="curios" style="margin-top: 10px">
   <%= @curios_view_string.html_safe %>
 </div>
 
@@ -90,7 +87,6 @@
     });
 
     $("#query_item_btn").on("click", function(){
-
         var json_array = [];
         var category_id_item = {};
 
@@ -99,8 +95,6 @@
 
         $("#curios_meta").find("[name='item']").each(function(){
             var element_type = $(this).data('value');
-
-
             if (element_type == 'checkbox'){
                 var item_name;
                 $(this).find("[name='item_name']").each(function(){
@@ -136,6 +130,8 @@
                 json_array.push(select_item);
             }
         });
+
+        alert('')
 
         $.ajax({
             url: "/home/query_curio_by_filter.json",
