@@ -5,13 +5,16 @@
 
 
 /*
-*= require bootstrap
 *= require pagination
+*= require_self
 * require kendo/kendo.common.min
 * require kendo/kendo.blueopal.min
-
-
 */
+
+
+@import "bootstrap";
+
+
 .obj_area {
   margin-bottom: 20px;
   padding: 10px 5px 10px 10px;
@@ -48,7 +51,7 @@
 .obj_create_btn {
   font-size: 18px;
   margin-bottom: 50px;
-  margin-left: 350px;
+  margin-left: 330px;
 }
 
 .obj_delete_btn {
@@ -89,7 +92,7 @@
   margin-bottom: 20px;
   padding: 10px 5px 10px 10px;
   border: #c0c0c0 3px ridge;
-  width: 450px;
+  width: 430px;
   position: relative;
   min-height: 65px;
 }

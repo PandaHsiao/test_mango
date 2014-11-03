@@ -2,82 +2,89 @@
 
 <h4>Hi～ 馬上客製化一個類別吧！<span style="margin-left: 20px;color:red">將左側的元素加入，再設定一下...</span></h4>
 
-<div>
-  <div style="float: left;width: 30%">
-    <h3>元素清單</h3>
-    <div class="obj_area">
-      <label class="obj_title">文字方框</label>
-      <div name="obj" data-value="textbox">
-        <input type="text">
-      </div>
-      <input type="button" class="obj_add_btn btn btn-danger" value="加入">
-    </div>
 
-    <div class="obj_area">
-      <label class="obj_title">文字區塊</label>
-      <div name="obj" data-value="textarea">
-        <textarea></textarea>
-      </div>
-      <input type="button" class="obj_add_btn btn btn-danger" value="加入">
-    </div>
+<div style="float: left;width: 30%">
+  <h3>元素清單</h3>
 
-    <div class="obj_area">
-      <label class="obj_title">多選方塊</label>
-      <div name="obj" data-value="checkbox">
-        <input type="checkbox" value="0"> 選項A &nbsp&nbsp
-        <input type="checkbox" value="1"> 選項B
-      </div>
-      <input type="button" class="obj_add_btn btn btn-danger" value="加入">
-    </div>
+  <div class="obj_area">
+    <label class="obj_title">文字方框</label>
 
-    <div class="obj_area">
-      <label class="obj_title">單選方塊</label>
-      <div name="obj" data-value="radiobox">
-        <input type="radio" value="0"> 選項A &nbsp&nbsp
-        <input type="radio" value="1"> 選項B
-      </div>
-      <input type="button" class="obj_add_btn btn btn-danger" value="加入">
+    <div name="obj" data-value="textbox">
+      <input type="text">
     </div>
-
-    <div class="obj_area">
-      <label class="obj_title">下拉選單</label>
-      <div name="obj" data-value="select">
-        <select>
-          <option value="A">選項A</option>
-          <option value="B">選項B</option>
-          <option value="C">選項C</option>
-          <option value="D">選項D</option>
-        </select>
-      </div>
-      <input type="button" class="obj_add_btn btn btn-danger" value="加入">
-    </div>
-
-    <div class="obj_area">
-      <label class="obj_title">檔案上傳</label>
-      <div name="obj" data-value="file">
-        <input type="file">
-      </div>
-      <input type="button" class="obj_add_btn btn btn-danger" value="加入">
-    </div>
+    <input type="button" class="obj_add_btn btn btn-danger" value="加入">
   </div>
 
-  <div id="category_table" style="float: left;margin-left: 50px;width: 55%;height: 700px;overflow-x:hidden;overflow-y:auto">
-    <h3>類別格式表單</h3>
+  <div class="obj_area">
+    <label class="obj_title">文字區塊</label>
 
-    <div class="obj_item">
-      <div class="obj_table">
-        <label class="obj_title obj_cell" style="padding-top: 7px"><span style="color: red;margin-right: 3px;">*</span>類別名稱：</label>
-        <input type="text" id="category_name" class="obj_cell" style="margin-left: 10px;padding-left: 5px;">
-        <!--<input type="button" class="obj_ok_btn btn btn-warning" data-value="category_name" value="確定">-->
-      </div>
+    <div name="obj" data-value="textarea">
+      <textarea></textarea>
     </div>
+    <input type="button" class="obj_add_btn btn btn-danger" value="加入">
+  </div>
 
-    <div id="sort_div">
+  <div class="obj_area">
+    <label class="obj_title">多選方塊</label>
+
+    <div name="obj" data-value="checkbox">
+      <input type="checkbox" value="0"> 選項A &nbsp&nbsp
+      <input type="checkbox" value="1"> 選項B
     </div>
+    <input type="button" class="obj_add_btn btn btn-danger" value="加入">
+  </div>
 
-    <input type="button" id="create_category" class="obj_create_btn btn btn-success" value="建立類別">
+  <div class="obj_area">
+    <label class="obj_title">單選方塊</label>
+
+    <div name="obj" data-value="radiobox">
+      <input type="radio" value="0"> 選項A &nbsp&nbsp
+      <input type="radio" value="1"> 選項B
+    </div>
+    <input type="button" class="obj_add_btn btn btn-danger" value="加入">
+  </div>
+
+  <div class="obj_area">
+    <label class="obj_title">下拉選單</label>
+
+    <div name="obj" data-value="select">
+      <select>
+        <option value="A">選項A</option>
+        <option value="B">選項B</option>
+        <option value="C">選項C</option>
+        <option value="D">選項D</option>
+      </select>
+    </div>
+    <input type="button" class="obj_add_btn btn btn-danger" value="加入">
+  </div>
+
+  <div class="obj_area">
+    <label class="obj_title">檔案上傳</label>
+
+    <div name="obj" data-value="file">
+      <input type="file">
+    </div>
+    <input type="button" class="obj_add_btn btn btn-danger" value="加入">
   </div>
 </div>
+
+<div id="category_table" style="float: left;margin-left: 50px;width: 55%;height: 700px;overflow-x:hidden;overflow-y:auto">
+  <h3>類別格式表單</h3>
+
+  <div class="obj_item">
+    <div class="obj_table">
+      <label class="obj_title obj_cell" style="padding-top: 7px"><span style="color: red;margin-right: 3px;">*</span>類別名稱：</label>
+      <input type="text" id="category_name" class="obj_cell" style="margin-left: 10px;padding-left: 5px;">
+      <!--<input type="button" class="obj_ok_btn btn btn-warning" data-value="category_name" value="確定">-->
+    </div>
+  </div>
+
+  <div id="sort_div">
+  </div>
+
+  <input type="button" id="create_category" class="obj_create_btn btn btn-success" value="建立類別">
+</div>
+
 
 <script>
     var show_tip = true
@@ -86,28 +93,30 @@
     //========================================================
     // 建立表單
     //========================================================
-    $("#create_category").click(function(){
-        if ($('#category_name').val().replace(/ /g,'').length <= 0){
+    $("#create_category").click(function () {
+        if ($('#category_name').val().replace(/ /g, '').length <= 0) {
             alert('類別名稱不能為空白')
             return false;
         }
 
         var exit = false;
-        $("#sort_div").find("[name='item_name']").each(function(){
-            if ($(this).val().replace(/ /g,'').length <= 0){
+        $("#sort_div").find("[name='item_name']").each(function () {
+            if ($(this).val().replace(/ /g, '').length <= 0) {
                 alert('項目名稱不能空白')
                 exit = true;
                 return false;
             }
         });
-        if (exit){return false;}
+        if (exit) {
+            return false;
+        }
 
-        if ($(".btn-warning").length > 0 ){
+        if ($(".btn-warning").length > 0) {
             alert('還有未確定之項目')
             return false;
         }
 
-        if ($(".obj_item").length < 2 ){
+        if ($(".obj_item").length < 2) {
             alert('至少要一個元素才能建立類別')
             return false;
         }
@@ -117,44 +126,44 @@
         category_name_item["category_name"] = $('#category_name').val();
         json_array.push(category_name_item);
 
-        $("#sort_div").find("[name='item_name']").each(function(){
+        $("#sort_div").find("[name='item_name']").each(function () {
             var element_type = $(this).data('value');
 
-            if (element_type == 'textbox'){
+            if (element_type == 'textbox') {
                 var textbox_item = {};
                 textbox_item["textbox_name"] = $(this).val();
                 json_array.push(textbox_item);
-            } else if (element_type == 'textarea'){
+            } else if (element_type == 'textarea') {
                 var textarea_item = {};
                 textarea_item["textarea_name"] = $(this).val();
                 json_array.push(textarea_item);
-            } else if (element_type == 'checkbox'){
+            } else if (element_type == 'checkbox') {
                 var checkbox_item = {};
                 checkbox_item["checkbox_name"] = $(this).val();
 
-                $(this).closest(".obj_item").each(function(){
-                    $(this).find("[name='lab_value']").each(function(index){
+                $(this).closest(".obj_item").each(function () {
+                    $(this).find("[name='lab_value']").each(function (index) {
                         checkbox_item['option' + index ] = $(this).text();
                     });
                 });
                 json_array.push(checkbox_item);
-            } else if (element_type == 'radiobox'){
+            } else if (element_type == 'radiobox') {
                 var radiobox_item = {};
                 radiobox_item["radiobox_name"] = $(this).val();
 
-                $(this).closest(".obj_item").each(function(){
-                    $(this).find("[name='lab_value']").each(function(index){
+                $(this).closest(".obj_item").each(function () {
+                    $(this).find("[name='lab_value']").each(function (index) {
                         radiobox_item['option' + index ] = $(this).text();
                     });
                 });
                 json_array.push(radiobox_item);
-            } else if (element_type == 'select'){
+            } else if (element_type == 'select') {
                 var select_item = {};
                 select_item["select_name"] = $(this).val();
 
-                $(this).closest(".obj_item").each(function(){
-                    $(this).find("[name='select_obj']").each(function(){
-                        $(this).children("option").each(function(index){
+                $(this).closest(".obj_item").each(function () {
+                    $(this).find("[name='select_obj']").each(function () {
+                        $(this).children("option").each(function (index) {
                             select_item['option' + index] = $(this).text();
                         });
                     });
@@ -168,14 +177,14 @@
         $.ajax({
             url: "/home/save_category.json",
             type: 'POST',
-            data:  {category_data: json_array},
+            data: {category_data: json_array},
             cache: false,
             async: false,
-            success: function(response){
-                if (response.result){
+            success: function (response) {
+                if (response.result) {
                     alert(response.data)
-                    var state = {url:'/home/index'};
-                    window.history.pushState(state,'', '/home/index');
+                    var state = {url: '/home/index'};
+                    window.history.pushState(state, '', '/home/index');
                     $("#right_partial").html(response.partial);
 
                     $("#ti1_sub a.now").removeClass('now');
@@ -183,17 +192,17 @@
 
                     bind_event();
                 }
-                else if (!response.result){
+                else if (!response.result) {
                     alert(response.data)
                 }
-                else if (response.error){
+                else if (response.error) {
                     alert(response.message)
                 }
                 else {
                     alert('發生未預期的回應，請告知CoDream小組處理!')
                 }
             },
-            error: function(){
+            error: function () {
                 alert('oops! 出現錯誤了!');
             }
         });
@@ -202,13 +211,13 @@
     //========================================================
     // 刪除項目
     //========================================================
-    $("#sort_div").on('click', '.obj_delete_btn', function() {
+    $("#sort_div").on('click', '.obj_delete_btn', function () {
         if (confirm('確定刪除此項目嗎？')) {
-            $(this).closest(".obj_item").each(function(){
+            $(this).closest(".obj_item").each(function () {
                 $(this).remove();
             });
 
-            if ($(".obj_item").length < 3){
+            if ($(".obj_item").length < 3) {
                 $("#tip_sortable").remove();
             }
         }
@@ -217,21 +226,21 @@
     //========================================================
     // 確定與編輯項目
     //========================================================
-    $("#category_table").on('click', '.obj_ok_btn', function() {
+    $("#category_table").on('click', '.obj_ok_btn', function () {
         var target_btn = $(this);
         var target_value = target_btn.val();
         var target_data_value = $(this).data('value')
 
-        if (target_data_value == 'category_name'){
-            if (target_value == '確定'){
+        if (target_data_value == 'category_name') {
+            if (target_value == '確定') {
                 category_name_ok(target_btn)
-            } else if(target_value == '編輯'){
+            } else if (target_value == '編輯') {
                 category_name_edit(target_btn)
             }
         } else {
-            if (target_value == '確定'){
+            if (target_value == '確定') {
                 item_ok(target_btn, target_data_value);
-            } else if(target_value == '編輯'){
+            } else if (target_value == '編輯') {
                 item_edit(target_btn, target_data_value);
             }
         }
@@ -240,83 +249,86 @@
     //========================================================
     // 類別名稱 確定與編輯
     //========================================================
-    function category_name_ok(target_btn){
+    function category_name_ok(target_btn) {
         var category_name = $('#category_name');
-        if (category_name.val().replace(/ /g,'').length > 0){
+        if (category_name.val().replace(/ /g, '').length > 0) {
             category_name.after($('<label name="replace_lab" class="obj_title obj_cell">' + category_name.val() + '</label>'));
             category_name.hide();
             target_btn.val('編輯');
             target_btn.addClass('btn-primary');
             target_btn.removeClass('btn-warning');
-        }else {
+        } else {
             alert('類別名稱未填~ ')
         }
-    };
+    }
+    ;
 
-    function category_name_edit(target_btn){
-        target_btn.closest('div').find("[name='replace_lab']").each(function(){
+    function category_name_edit(target_btn) {
+        target_btn.closest('div').find("[name='replace_lab']").each(function () {
             $(this).remove();
         });
         target_btn.val('確定');
         target_btn.removeClass('btn-primary');
         target_btn.addClass('btn-warning');
         $('#category_name').show();
-    };
+    }
+    ;
 
     //========================================================
     // 項目 確定
     //========================================================
-    function item_ok(target_btn, target_data_value){
+    function item_ok(target_btn, target_data_value) {
         var obj_item_name;
         var check_result = false;
 
-        target_btn.closest('div').find("[name='item_name']").each(function(){
+        target_btn.closest('div').find("[name='item_name']").each(function () {
             obj_item_name = $(this);
 
-            if (obj_item_name.val().replace(/ /g,'').length > 0){
+            if (obj_item_name.val().replace(/ /g, '').length > 0) {
                 check_result = true
-            }else {
+            } else {
                 alert('還有項目名稱未填~ ')
             }
         });
 
-        if (check_result == false){
+        if (check_result == false) {
             return false;
         }
 
-        if (check_result && target_data_value == 'checkbox'){
+        if (check_result && target_data_value == 'checkbox') {
             check_result = checkbox_ok(target_btn);
         }
-        else if (check_result && target_data_value == 'radiobox'){
+        else if (check_result && target_data_value == 'radiobox') {
             check_result = radio_ok(target_btn);
         }
-        else if (check_result && target_data_value == 'select'){
+        else if (check_result && target_data_value == 'select') {
             check_result = select_ok(target_btn);
         }
         else {
             check_result = true
         }
 
-        if (check_result){
+        if (check_result) {
             obj_item_name.after($('<label name="replace_lab" class="obj_title obj_cell">' + obj_item_name.val() + '</label>'));
             obj_item_name.hide();
             target_btn.val('編輯');
             target_btn.addClass('btn-primary');
             target_btn.removeClass('btn-warning');
         }
-    };
+    }
+    ;
 
-    function checkbox_ok(target_btn){
+    function checkbox_ok(target_btn) {
         var at_least_one = false;
         var check_result = false;
 
-        target_btn.closest(".obj_item").each(function(){
+        target_btn.closest(".obj_item").each(function () {
             var option_group = []
-            $(this).find("[name='checkbox_option']").each(function(){
+            $(this).find("[name='checkbox_option']").each(function () {
                 at_least_one = true;
                 check_result = true;
-                $(this).find("[name='item_value']").each(function(){
-                    if ($(this).val().replace(/ /g,'').length > 0){
+                $(this).find("[name='item_value']").each(function () {
+                    if ($(this).val().replace(/ /g, '').length > 0) {
                         option_group.push($(this).val());
                     } else {
                         alert('多選項目值不能為空');
@@ -324,46 +336,51 @@
                         return false;
                     }
                 });
-                if (!check_result){ return false;}
+                if (!check_result) {
+                    return false;
+                }
             });
-            if (!check_result){ return false;}
+            if (!check_result) {
+                return false;
+            }
 
-            $(this).find("[name='add_checkbox_option']").each(function(){
+            $(this).find("[name='add_checkbox_option']").each(function () {
                 $(this).hide();
             });
 
-            $(this).find("[name='checkbox_option']").each(function(index){
-                $(this).find("[name='lab_value']").each(function(){
+            $(this).find("[name='checkbox_option']").each(function (index) {
+                $(this).find("[name='lab_value']").each(function () {
                     $(this).text(option_group[index]);
                 });
 
-                $(this).find("[name='item_value']").each(function(){
+                $(this).find("[name='item_value']").each(function () {
                     $(this).hide();
                 });
 
-                $(this).find(".checkbox_delete").each(function(){
+                $(this).find(".checkbox_delete").each(function () {
                     $(this).hide();
                 });
             });
         });
 
-        if (!at_least_one){
+        if (!at_least_one) {
             alert('多選項目至少要有一個選項!')
         }
         return check_result;
-    };
+    }
+    ;
 
-    function radio_ok(target_btn){
+    function radio_ok(target_btn) {
         var at_least_one = false;
         var check_result = false;
 
-        target_btn.closest(".obj_item").each(function(){
+        target_btn.closest(".obj_item").each(function () {
             var option_group = []
-            $(this).find("[name='radio_option']").each(function(){
+            $(this).find("[name='radio_option']").each(function () {
                 at_least_one = true;
                 check_result = true;
-                $(this).find("[name='item_value']").each(function(){
-                    if ($(this).val().replace(/ /g,'').length > 0){
+                $(this).find("[name='item_value']").each(function () {
+                    if ($(this).val().replace(/ /g, '').length > 0) {
                         option_group.push($(this).val());
                     } else {
                         alert('單選項目值不能為空');
@@ -371,46 +388,51 @@
                         return false;
                     }
                 });
-                if (!check_result){ return false;}
+                if (!check_result) {
+                    return false;
+                }
             });
-            if (!check_result){ return false;}
+            if (!check_result) {
+                return false;
+            }
 
-            $(this).find("[name='add_radio_option']").each(function(){
+            $(this).find("[name='add_radio_option']").each(function () {
                 $(this).hide();
             });
 
-            $(this).find("[name='radio_option']").each(function(index){
-                $(this).find("[name='lab_value']").each(function(){
+            $(this).find("[name='radio_option']").each(function (index) {
+                $(this).find("[name='lab_value']").each(function () {
                     $(this).text(option_group[index]);
                 });
 
-                $(this).find("[name='item_value']").each(function(){
+                $(this).find("[name='item_value']").each(function () {
                     $(this).hide();
                 });
 
-                $(this).find(".radio_delete").each(function(){
+                $(this).find(".radio_delete").each(function () {
                     $(this).hide();
                 });
             });
         });
 
-        if (!at_least_one){
+        if (!at_least_one) {
             alert('單選項目至少要有一個選項!')
         }
         return check_result;
-    };
+    }
+    ;
 
-    function select_ok(target_btn){
+    function select_ok(target_btn) {
         var at_least_one = false;
         var check_result = false;
 
-        target_btn.closest(".obj_item").each(function(){
+        target_btn.closest(".obj_item").each(function () {
             var option_group = []
-            $(this).find("[name='select_option']").each(function(){
+            $(this).find("[name='select_option']").each(function () {
                 at_least_one = true;
                 check_result = true;
-                $(this).find("[name='item_value']").each(function(){
-                    if ($(this).val().replace(/ /g,'').length > 0){
+                $(this).find("[name='item_value']").each(function () {
+                    if ($(this).val().replace(/ /g, '').length > 0) {
                         option_group.push($(this).val());
                     } else {
                         alert('下拉選單，項目值不能為空');
@@ -418,16 +440,20 @@
                         return false;
                     }
                 });
-                if (!check_result){ return false;}
+                if (!check_result) {
+                    return false;
+                }
             });
-            if (!check_result){ return false;}
+            if (!check_result) {
+                return false;
+            }
 
-            $(this).find("[name='add_select_option']").each(function(){
+            $(this).find("[name='add_select_option']").each(function () {
                 $(this).hide();
             });
 
             var select_obj;
-            $(this).find("[name='select_obj']").each(function(){
+            $(this).find("[name='select_obj']").each(function () {
                 select_obj = $(this);
             });
 
@@ -436,108 +462,113 @@
                 select_obj.append($('<option value="' + i + '">' + option_group[i] + '</option>'));
             }
 
-            select_obj.css('display','inline');
+            select_obj.css('display', 'inline');
 
-            $(this).find("[name='select_option']").each(function(){
-                $(this).css('display','none');
+            $(this).find("[name='select_option']").each(function () {
+                $(this).css('display', 'none');
             });
         });
 
-        if (!at_least_one){
+        if (!at_least_one) {
             alert('下拉選單至少要有一個選項!')
         }
         return check_result;
-    };
+    }
+    ;
 
     //========================================================
     // 項目 編輯
     //========================================================
-    function item_edit(target_btn, target_data_value){
-        if (target_data_value == 'checkbox'){
+    function item_edit(target_btn, target_data_value) {
+        if (target_data_value == 'checkbox') {
             checkbox_edit(target_btn);
-        } else if (target_data_value == 'radiobox'){
+        } else if (target_data_value == 'radiobox') {
             radio_edit(target_btn);
-        } else if (target_data_value == 'select'){
+        } else if (target_data_value == 'select') {
             select_edit(target_btn);
         }
 
-        target_btn.closest('div').find("[name='replace_lab']").each(function(){
+        target_btn.closest('div').find("[name='replace_lab']").each(function () {
             $(this).remove();
         });
         target_btn.val('確定');
         target_btn.removeClass('btn-primary');
         target_btn.addClass('btn-warning');
 
-        target_btn.closest('div').find("[name='item_name']").each(function(){
+        target_btn.closest('div').find("[name='item_name']").each(function () {
             $(this).show();
         });
-    };
+    }
+    ;
 
-    function checkbox_edit(target_btn){
-        target_btn.closest(".obj_item").each(function(){
-            $(this).find("[name='add_checkbox_option']").each(function(){
+    function checkbox_edit(target_btn) {
+        target_btn.closest(".obj_item").each(function () {
+            $(this).find("[name='add_checkbox_option']").each(function () {
                 $(this).show();
             });
 
-            $(this).find("[name='checkbox_option']").each(function(){
-                $(this).find("[name='lab_value']").each(function(){
+            $(this).find("[name='checkbox_option']").each(function () {
+                $(this).find("[name='lab_value']").each(function () {
                     $(this).text('');
                 });
 
-                $(this).find("[name='item_value']").each(function(){
+                $(this).find("[name='item_value']").each(function () {
                     $(this).show();
                 });
 
-                $(this).find(".checkbox_delete").each(function(){
+                $(this).find(".checkbox_delete").each(function () {
                     $(this).show();
                 });
             });
         });
-    };
+    }
+    ;
 
-    function radio_edit(target_btn){
-        target_btn.closest(".obj_item").each(function(){
-            $(this).find("[name='add_radio_option']").each(function(){
+    function radio_edit(target_btn) {
+        target_btn.closest(".obj_item").each(function () {
+            $(this).find("[name='add_radio_option']").each(function () {
                 $(this).show();
             });
 
-            $(this).find("[name='radio_option']").each(function(){
-                $(this).find("[name='lab_value']").each(function(){
+            $(this).find("[name='radio_option']").each(function () {
+                $(this).find("[name='lab_value']").each(function () {
                     $(this).text('');
                 });
 
-                $(this).find("[name='item_value']").each(function(){
+                $(this).find("[name='item_value']").each(function () {
                     $(this).show();
                 });
 
-                $(this).find(".radio_delete").each(function(){
+                $(this).find(".radio_delete").each(function () {
                     $(this).show();
                 });
             });
         });
-    };
+    }
+    ;
 
-    function select_edit(target_btn){
-        target_btn.closest(".obj_item").each(function(){
-            $(this).find("[name='add_select_option']").each(function(){
+    function select_edit(target_btn) {
+        target_btn.closest(".obj_item").each(function () {
+            $(this).find("[name='add_select_option']").each(function () {
                 $(this).show();
             });
 
-            $(this).find("[name='select_obj']").each(function(){
-                $(this).css('display','none');
+            $(this).find("[name='select_obj']").each(function () {
+                $(this).css('display', 'none');
                 $(this).empty();
             });
 
-            $(this).find("[name='select_option']").each(function(){
-                $(this).css('display','inline');
+            $(this).find("[name='select_option']").each(function () {
+                $(this).css('display', 'inline');
             });
         });
-    };
+    }
+    ;
 
     //========================================================
     // 刪除tip
     //========================================================
-    $("#category_table").on('click', '.delete_tip_btn', function() {
+    $("#category_table").on('click', '.delete_tip_btn', function () {
         $("#tip_sortable").remove();
         show_tip = false;
     });
@@ -545,26 +576,26 @@
     //========================================================
     // 新增項目
     //========================================================
-    $(".obj_add_btn").click(function(){
-        $(this).closest('div').find("[name='obj']").each(function(){
+    $(".obj_add_btn").click(function () {
+        $(this).closest('div').find("[name='obj']").each(function () {
             var html_tag = $(this).data("value");
 
-            if (html_tag == 'textbox'){
+            if (html_tag == 'textbox') {
                 add_textbox();
-            } else if(html_tag == 'textarea'){
+            } else if (html_tag == 'textarea') {
                 add_textarea();
-            } else if(html_tag == 'checkbox'){
+            } else if (html_tag == 'checkbox') {
                 add_checkbox();
-            } else if(html_tag == 'radiobox'){
+            } else if (html_tag == 'radiobox') {
                 add_radio();
-            } else if(html_tag == 'select'){
+            } else if (html_tag == 'select') {
                 add_select();
-            } else if(html_tag == 'file'){
+            } else if (html_tag == 'file') {
                 alert('=口= 這個還沒開放拉')
             }
         });
 
-        if ($(".obj_item").length == 3 && show_tip){
+        if ($(".obj_item").length == 3 && show_tip) {
             $("#sort_div").after($('<h4 id="tip_sortable"><a class="delete_tip_btn" style="text-decoration: none;">x</a>&nbsp&nbsp&nbsp上下拖曳框框可以改變順序喔～</h4>'));
         }
     });
@@ -572,7 +603,7 @@
     //========================================================
     // 新增 textbox 項目
     //========================================================
-    function add_textbox(){
+    function add_textbox() {
         var target_div = $("#sort_div");
         var row = $('<div class="obj_item sortable"></div>').appendTo(target_div);
         var in_row_0 = $('<div class="obj_table"></div>').appendTo(row);
@@ -584,12 +615,13 @@
         $('<input type="text" name="item_value" disabled style="margin-left: 10px">').appendTo(in_row_1);
         //$('<input type="button" class="obj_ok_btn btn btn-warning" data-value="text" value="確定">').appendTo(row);
         //$('<input name="Weight" type="number" min="0.1" max="100" style="text-align:right; height: 20px; width:80px;padding-top:0" />').appendTo(in_row);
-    };
+    }
+    ;
 
     //========================================================
     // 新增 textarea 項目
     //========================================================
-    function add_textarea(){
+    function add_textarea() {
         var target_div = $("#sort_div");
         var row = $('<div class="obj_item sortable"></div>').appendTo(target_div);
         var in_row_0 = $('<div class="obj_table"></div>').appendTo(row);
@@ -600,12 +632,13 @@
         $('<label class="obj_title"><span style="color: red;margin-right: 5px;">&nbsp</span>文字區塊：</label>').appendTo(in_row_1);
         $('<textarea name="item_value" disabled style="margin-left: 10px"></textarea>').appendTo(in_row_1);
         //$('<input type="button" class="obj_ok_btn btn btn-warning" data-value="textarea" value="確定">').appendTo(row);
-    };
+    }
+    ;
 
     //========================================================
     // 新增 checkbox 項目
     //========================================================
-    function add_checkbox(){
+    function add_checkbox() {
         var target_div = $("#sort_div");
         var row = $('<div class="obj_item sortable"></div>').appendTo(target_div);
         var in_row_0 = $('<div class="obj_table"></div>').appendTo(row);
@@ -629,13 +662,14 @@
                 '<a class="checkbox_delete" style="text-decoration: none;">&nbsp x</a></div>').appendTo(row);
 
         $('<input type="button" class="obj_ok_btn btn btn-warning" data-value="checkbox" value="確定">').appendTo(row);
-    };
+    }
+    ;
 
     //========================================================
     // 新增 checkbox option
     //========================================================
-    $("#sort_div").on('click', "[name='add_checkbox_option']", function() {
-        $(this).closest(".obj_item").each(function(){
+    $("#sort_div").on('click', "[name='add_checkbox_option']", function () {
+        $(this).closest(".obj_item").each(function () {
             var row = $(this);
             $('<div name="checkbox_option"><input type="checkbox" disabled style="margin-left: 110px;margin-bottom: 5px">' +
                     '<input type="text" name="item_value"  placeholder="請填入選項值" style="margin-left: 5px;padding-left: 5px;margin-bottom: 5px">' +
@@ -647,8 +681,8 @@
     //========================================================
     // 刪除 checkbox option
     //========================================================
-    $("#sort_div").on('click', '.checkbox_delete', function() {
-        $(this).closest("[name='checkbox_option']").each(function(){
+    $("#sort_div").on('click', '.checkbox_delete', function () {
+        $(this).closest("[name='checkbox_option']").each(function () {
             $(this).remove();
         });
     });
@@ -656,7 +690,7 @@
     //========================================================
     // 新增 radio button 項目
     //========================================================
-    function add_radio(){
+    function add_radio() {
         var target_div = $("#sort_div");
         var row = $('<div class="obj_item sortable"></div>').appendTo(target_div);
         var in_row_0 = $('<div class="obj_table"></div>').appendTo(row);
@@ -680,13 +714,14 @@
                 '<a class="radio_delete" style="text-decoration: none;">&nbsp x</a></div>').appendTo(row);
 
         $('<input type="button" class="obj_ok_btn btn btn-warning" data-value="radiobox" value="確定">').appendTo(row);
-    };
+    }
+    ;
 
     //========================================================
     // 新增 radio button option
     //========================================================
-    $("#sort_div").on('click', "[name='add_radio_option']", function() {
-        $(this).closest(".obj_item").each(function(){
+    $("#sort_div").on('click', "[name='add_radio_option']", function () {
+        $(this).closest(".obj_item").each(function () {
             var row = $(this);
             $('<div name="radio_option"><input type="radio" disabled style="margin-left: 110px;margin-bottom: 5px">' +
                     '<input type="text" name="item_value"  placeholder="請填入選項值" style="margin-left: 5px;padding-left: 5px;margin-bottom: 5px">' +
@@ -698,8 +733,8 @@
     //========================================================
     // 刪除 radio button option
     //========================================================
-    $("#sort_div").on('click', '.radio_delete', function() {
-        $(this).closest("[name='radio_option']").each(function(){
+    $("#sort_div").on('click', '.radio_delete', function () {
+        $(this).closest("[name='radio_option']").each(function () {
             $(this).remove();
         });
     });
@@ -707,7 +742,7 @@
     //========================================================
     // 新增 select object 項目
     //========================================================
-    function add_select(){
+    function add_select() {
         var target_div = $("#sort_div");
         var row = $('<div class="obj_item sortable"></div>').appendTo(target_div);
         var in_row_0 = $('<div class="obj_table"></div>').appendTo(row);
@@ -732,13 +767,14 @@
                 '<a class="select_delete" style="text-decoration: none;">&nbsp x</a></div>').appendTo(row);
 
         $('<input type="button" class="obj_ok_btn btn btn-warning" data-value="select" value="確定">').appendTo(row);
-    };
+    }
+    ;
 
     //========================================================
     // 新增 select option
     //========================================================
-    $("#sort_div").on('click', "[name='add_select_option']", function() {
-        $(this).closest(".obj_item").each(function(){
+    $("#sort_div").on('click', "[name='add_select_option']", function () {
+        $(this).closest(".obj_item").each(function () {
             var row = $(this);
             $('<div name="select_option">' +
                     '<input type="text" name="item_value"  placeholder="請填入選項值" style="margin-left: 110px;padding-left: 5px;margin-bottom: 5px">' +
@@ -750,8 +786,8 @@
     //========================================================
     // 刪除 select option
     //========================================================
-    $("#sort_div").on('click', '.select_delete', function() {
-        $(this).closest("[name='select_option']").each(function(){
+    $("#sort_div").on('click', '.select_delete', function () {
+        $(this).closest("[name='select_option']").each(function () {
             $(this).remove();
         });
     });
