@@ -1,6 +1,15 @@
 class HomeController < ApplicationController
   layout 'home'
 
+
+
+  def test
+
+
+  end
+
+
+
   #===================== Block Function =====================
   # Block Relation : abandoned
   #

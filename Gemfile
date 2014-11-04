@@ -34,7 +34,7 @@ gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails', '~> 2.3.0'
 
 # Use kendo UI
-gem 'kendoui-rails'
+#gem 'kendoui-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

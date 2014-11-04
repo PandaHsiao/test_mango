@@ -48,7 +48,7 @@ TestMongo::Application.routes.draw do
 
   end
 
-
+  get 'home/test'
 
 
   #= Abandoned =================================
