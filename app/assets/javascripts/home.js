@@ -7,12 +7,11 @@
  */
 
 //= require jquery
-//= require jquery-ui/sortable
 //= require jquery_ujs
+//= require jquery-ui
+
 //= require jquery.pagination
 // require kendo/kendo.web.min
-
-
 
 
 
