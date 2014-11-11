@@ -19,7 +19,7 @@ TestMongo::Application.configure do
   # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
   # config.action_dispatch.rack_cache = true
 
-  config.assets.initialize_on_precompile = true # orgin is false
+  config.assets.initialize_on_precompile = false # orgin is false
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_assets = false
@@ -32,6 +32,7 @@ TestMongo::Application.configure do
   #config.assets.compile = false
   #config.assets.precompile += %w( bootstrap.css )
 
+  config.assets.digest = true
   config.assets.compile = false
   #config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
   config.assets.precompile =  ['*.js', '*.scss','*.css','*.js.coffee']
