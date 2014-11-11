@@ -12,6 +12,7 @@
 //= require jquery.ui.sortable
 // require jquery-ui
 //= require ../../assets/ckeditor/ckeditor
+//= require bootstrap-sprockets
 
 //= require jquery.pagination
 // require kendo/kendo.web.min
