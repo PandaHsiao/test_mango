@@ -8,8 +8,8 @@
 
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui/sortable
-// require jquery-ui
+// require jquery-ui/sortable
+//= require jquery-ui
 //= require ../../assets/ckeditor/ckeditor
 
 //= require jquery.pagination
