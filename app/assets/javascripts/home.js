@@ -9,6 +9,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui/sortable
+//= require ../../assets/ckeditor/ckeditor
 
 //= require jquery.pagination
 // require kendo/kendo.web.min

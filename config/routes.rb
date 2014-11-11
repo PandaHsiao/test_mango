@@ -1,6 +1,5 @@
 TestMongo::Application.routes.draw do
 
-
   devise_for :users
 
   #devise_for :users , :controllers => { :omniauth_callbacks => "omniauth_callbacks", confirmations: 'confirmations', :registrations => 'registrations', :passwords => 'passwords' }
@@ -81,5 +80,16 @@ TestMongo::Application.routes.draw do
   get 'main/index'
 
 
+
+  #======================================
+
+  get 'yoolyooly/index'
+  get 'yoolyooly/signin'
+  get 'yoolyooly/signup'
+  get 'yoolyooly/signup_complete'
+
+  get 'yoolyooly/scratch'
+  get 'yoolyooly/gift'
+  get 'yoolyooly/store_info'
 
 end

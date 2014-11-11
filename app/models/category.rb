@@ -25,6 +25,7 @@ class Category
   field :uid, type: String
   field :d, type: DateTime
   field :title, type: String
+  field :content, type: String
 
   embeds_many :category_datas
 

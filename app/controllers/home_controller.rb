@@ -371,11 +371,12 @@ class HomeController < ApplicationController
 
   def save_curio
     curio_data = params[:curio_data]
+    curio_content = params[:curio_content].strip
 
-    if curio_data.blank?
+    if curio_data.blank? || curio_content.blank?
       save_curio_response(false, nil)
     else
-      category_id = parse_curio_data_for_save(curio_data)
+      category_id = parse_curio_data_for_save(curio_data, curio_content)
 
       if category_id.present?
         save_curio_response(true, category_id)
@@ -385,7 +386,7 @@ class HomeController < ApplicationController
     end
   end
 
-  def parse_curio_data_for_save(curio_data)
+  def parse_curio_data_for_save(curio_data, curio_content)
     category = Category.new
     category_datas = []
 
@@ -439,6 +440,7 @@ class HomeController < ApplicationController
         end
       end
 
+      category.content = curio_content
       category.category_datas = category_datas
       category.save
       return category.cid

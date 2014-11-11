@@ -8,6 +8,8 @@
   <%= @view_string.html_safe %>
 </div>
 
+<textarea class="ckeditor" id="ckeditor_new_curio"></textarea>
+
 
 <input type="button" class="btn btn-danger" style="font-size: 18px; border: #ac381e;margin-bottom: 8px" id="save_data" value="確定">
 
@@ -103,7 +105,7 @@
         $.ajax({
             url: "/home/save_curio.json",
             type: 'POST',
-            data:  {curio_data: json_array},
+            data:  {curio_data: json_array, curio_content: CKEDITOR.instances.ckeditor_new_curio.getData().toString()},
             cache: false,
             async: false,
             success: function(response){

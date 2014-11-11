@@ -64,7 +64,15 @@
                 bind_event();
             } else if (this_url == '/home/curio_list'){
                 bind_event();
+            } else if (this_url =='/home/new_curio') {
+                CKEDITOR.replace('ckeditor_new_curio', {
+                    filebrowserBrowseUrl: '/browser/4',
+                    filebrowserImageBrowseUrl: '/browser/4',
+                    filebrowserUploadUrl: '/uploader/5',
+                    filebrowserImageUploadUrl: '/uploader/88'
+                })
             }
+
         }).fail(function(){ alert('oops! 出現錯誤了!') });
     });
 

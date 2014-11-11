@@ -1,0 +1,26 @@
+<div id="gif_scratchpad" class="scratchpad">
+
+</div>
+
+<div style="text-align: center">
+  <a id="serial_number" href="#" class="serial_number">TWTP-AA000001</a>
+</div>
+
+<script>
+
+    $('#gif_scratchpad').wScratchPad({
+        bg: '../../assets/images/result.png',
+        fg: '../../assets/images/gift.png',
+        'cursor': 'url("./cursors/coin.png") 5 5, default',
+        scratchMove: function (e, percent) {
+            $('#demo2-percent').html(percent);
+
+            if (percent > 50) {
+                this.clear();
+            }
+        }
+    });
+</script>
+
+
+
