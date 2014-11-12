@@ -7,7 +7,7 @@ source 'https://rubygems.org'
 gem 'jquery-ui-rails', '~> 4.2.1'
 
 # bootstrap
-gem 'bootstrap-sass', '~> 3.2.0.0'
+gem 'bootstrap-sass', '3.1.0'
 gem 'sprockets-rails','2.1.3'
 
 gem 'devise'
