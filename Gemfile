@@ -8,8 +8,8 @@ gem 'jquery-ui-rails', '~> 4.2.1'
 
 # bootstrap
 #gem 'bootstrap-sass', '2.3.2.2'
-#gem 'bootstrap-sass', '3.1.0.0'
-#gem 'sprockets-rails','2.1.3'
+gem 'bootstrap-sass', '3.3.0'
+gem 'sprockets-rails','2.1.3'
 
 gem 'devise'
 
@@ -21,16 +21,16 @@ gem 'mongoid', '~> 4.0.0.beta1', github: 'mongoid/mongoid'
 gem 'rails', '4.1.5'
 
 # Use SCSS for stylesheets
-#gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 4.0.3'
 
 # Use Uglifier as compressor for JavaScript assets
-#gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-#gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-#gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails', '~> 2.3.0'
@@ -47,15 +47,6 @@ gem 'jbuilder', '~> 2.0'  #1.2
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
-end
-
-group :assets do
-  gem 'sass-rails', '~> 4.0.3'
-  gem 'coffee-rails', '~> 4.0.0'
-  gem 'uglifier', '>= 1.3.0'
-  gem 'bootstrap-sass', '~> 3.0.2.0'
-
-  gem 'therubyracer', :platform => :ruby
 end
 
 # Use ActiveModel has_secure_password
