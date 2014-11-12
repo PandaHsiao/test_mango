@@ -34,7 +34,7 @@ TestMongo::Application.configure do
 
   config.assets.compile = true
   config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
-  config.assets.precompile =  ['*.js', '*.scss','*.css','*.js.coffee']
+  config.assets.precompile +=  ['variables.scss', '*.js', '*.scss','*.css','*.js.coffee']
 
   #config.assets.precompile += %w( *.css *.js *.scss *.js.coffee )
   #config.assets.precompile =  ['application.js', 'home.js','jquery.pagination.js','yoolyooly.js' ,'application.css.scss',
