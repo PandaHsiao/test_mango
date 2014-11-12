@@ -15,4 +15,5 @@
 /log/*.log
 /tmp
 
-#Gemfile.lock   #in heroku need it, publish to heroku and  continue ignore
+Gemfile.lock   
+#in heroku need it, publish to heroku and  continue ignore
