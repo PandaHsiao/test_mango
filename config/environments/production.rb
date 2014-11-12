@@ -37,7 +37,7 @@ TestMongo::Application.configure do
 
   #config.assets.precompile =  ['*.js', '*.scss','*.css','*.js.coffee']
 
-  config.assets.precompile = ['/app/assets/stylesheets/yoolyooly.css.scss','application.css.scss']
+  config.assets.precompile = ['yoolyooly.scss','application.scss']
 
   #config.assets.precompile += %w[*.png *.jpg *.jpeg *.gif *.css *.scss *.js *.js.coffee]
   #config.assets.precompile += %w( variables.scss *.css *.js *.scss *.js.coffee )
