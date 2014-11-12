@@ -11,7 +11,7 @@ gem 'jquery-ui-rails', '~> 4.2.1'
 #gem 'bootstrap-sass', '3.3.0'
 #gem 'sprockets-rails','2.1.3'
 
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 
 gem 'devise'
 
