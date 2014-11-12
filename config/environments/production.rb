@@ -32,9 +32,12 @@ TestMongo::Application.configure do
   #config.assets.compile = false
   #config.assets.precompile += %w( bootstrap.css )
 
-  config.assets.compile = false
+  config.assets.compile = true
   #config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
-  config.assets.precompile =  ['*.js', '*.scss','*.css','*.js.coffee']
+
+  #config.assets.precompile =  ['*.js', '*.scss','*.css','*.js.coffee']
+
+  config.assets.precompile = ['bootstrap.scss']
 
   #config.assets.precompile += %w[*.png *.jpg *.jpeg *.gif *.css *.scss *.js *.js.coffee]
   #config.assets.precompile += %w( variables.scss *.css *.js *.scss *.js.coffee )
