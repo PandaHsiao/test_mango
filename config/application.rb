@@ -23,6 +23,8 @@ module TestMongo
 
     #config.assets.enabled = true
     #config.assets.precompile =  ['*.js', '*.scss','*.css','*.js.coffee']
+    config.assets.precompile += %w( bootstrap.custom.css.scss )
+    config.assets.precompile += %w( application.js yoolyooly.js application.css.scss home.css.scss yoolyooly.css.scss )
 
     #config.assets.enabled = true
     #config.assets.initialize_on_precompile = false
