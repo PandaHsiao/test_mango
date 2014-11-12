@@ -38,7 +38,7 @@ TestMongo::Application.configure do
   #config.assets.precompile += %w( bootstrap.custom.scss )
   #config.assets.precompile += %w( application.js yoolyooly.js application.css home.css yoolyooly.css )
 
-  config.assets.precompile =  ['*.js', '*.scss','*.css','*.js.coffee']
+  #config.assets.precompile =  ['*.js', '*.scss','*.css','*.js.coffee']
 
   #config.assets.precompile = ['yoolyooly.scss','application.scss']
 
