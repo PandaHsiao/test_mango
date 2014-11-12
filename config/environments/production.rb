@@ -19,10 +19,10 @@ TestMongo::Application.configure do
   # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
   # config.action_dispatch.rack_cache = true
 
-  #config.assets.initialize_on_precompile = true # orgin is false
+  config.assets.initialize_on_precompile = false # orgin is false
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
+  config.serve_static_assets = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -32,16 +32,13 @@ TestMongo::Application.configure do
   #config.assets.compile = false
   #config.assets.precompile += %w( bootstrap.css )
 
-  #config.assets.digest = true
-  config.assets.compile = false
+  config.assets.compile = true
   #config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
   #config.assets.precompile =  ['*.js', '*.scss','*.css','*.js.coffee', 'jquery-migrate-rails.js']
 
-  config.assets.precompile += %w( *.css *.js *.scss *.js.coffee )
+  #config.assets.precompile += %w( *.css *.js *.scss *.js.coffee )
   #config.assets.precompile =  ['application.js', 'home.js','jquery.pagination.js','yoolyooly.js' ,'application.css.scss',
    #                            'home.css.scss', 'pagination.css', 'yollyooly.css.scss']
-
-
 
 
 
