@@ -22,7 +22,7 @@ TestMongo::Application.configure do
   config.assets.initialize_on_precompile = false # orgin is false
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = true
+  config.serve_static_assets = false
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -32,11 +32,12 @@ TestMongo::Application.configure do
   #config.assets.compile = false
   #config.assets.precompile += %w( bootstrap.css )
 
-  config.assets.compile = true
-  config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
-  config.assets.precompile +=  ['variables.scss', '*.js', '*.scss','*.css','*.js.coffee']
+  config.assets.compile = false
+  #config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
+  #config.assets.precompile +=  ['variables.scss', '*.js', '*.scss','*.css','*.js.coffee']
 
-  #config.assets.precompile += %w( *.css *.js *.scss *.js.coffee )
+  config.assets.precompile += %w[*.png *.jpg *.jpeg *.gif *.css *.scss *.js *.js.coffee]
+  #config.assets.precompile += %w( variables.scss *.css *.js *.scss *.js.coffee )
   #config.assets.precompile =  ['application.js', 'home.js','jquery.pagination.js','yoolyooly.js' ,'application.css.scss',
    #                            'home.css.scss', 'pagination.css', 'yollyooly.css.scss']
 
