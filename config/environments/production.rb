@@ -32,7 +32,7 @@ TestMongo::Application.configure do
   #config.assets.compile = false
   #config.assets.precompile += %w( bootstrap.css )
 
-  config.assets.compile = true
+  config.assets.compile = false
   config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
 
   #config.assets.precompile += %w( bootstrap.custom.scss )
