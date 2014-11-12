@@ -14,7 +14,7 @@
 //= require ../../assets/ckeditor/ckeditor
 
 // require bootstrap-sprockets
-//= require bootstrap
+// require bootstrap
 
 //= require jquery.pagination
 // require kendo/kendo.web.min
