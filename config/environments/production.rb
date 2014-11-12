@@ -33,16 +33,16 @@ TestMongo::Application.configure do
   #config.assets.precompile += %w( bootstrap.css )
 
   config.assets.compile = true
-  #config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
+  config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
 
   #config.assets.precompile += %w( bootstrap.custom.scss )
   #config.assets.precompile += %w( application.js yoolyooly.js application.css home.css yoolyooly.css )
 
-  #config.assets.precompile =  ['*.js', '*.scss','*.css','*.js.coffee']
+  config.assets.precompile =  ['*.js', '*.scss','*.css','*.js.coffee']
 
   #config.assets.precompile = ['yoolyooly.scss','application.scss']
 
-  config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.css *.scss *.js *.js.coffee)
+  #config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif *.css *.scss *.js *.js.coffee)
   #config.assets.precompile += %w( variables.scss *.css *.js *.scss *.js.coffee )
   #config.assets.precompile =  ['application.js', 'home.js','jquery.pagination.js','yoolyooly.js' ,'application.css.scss',
    #                            'home.css.scss', 'pagination.css', 'yollyooly.css.scss']
