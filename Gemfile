@@ -1,21 +1,13 @@
 source 'https://rubygems.org'
 
-# jqgrid jquery plugin packaged for the rails asset pipeline
-#gem 'jqgrid-jquery-rails', '~> 4.5.201'
-
 # jquery-ui-rails
 gem 'jquery-ui-rails', '~> 4.2.1'
-
-# bootstrap
-#gem 'bootstrap-sass', '2.3.2.2'
-#gem 'bootstrap-sass', '3.3.0'
-#gem 'sprockets-rails','2.1.3'
 
 gem 'rails_12factor', group: :production
 
 gem 'devise'
 
-#ruby '2.0.0'
+ruby '2.0.0'
 
 # MongoDb use
 gem 'mongoid', '~> 4.0.0.beta1', github: 'mongoid/mongoid'
