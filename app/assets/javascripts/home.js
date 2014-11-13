@@ -6,8 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-//= require jquery
-//= require jquery_ujs
+//= require application
 // require jquery-ui/sortable
 //= require jquery.ui.sortable
 // require jquery-ui
