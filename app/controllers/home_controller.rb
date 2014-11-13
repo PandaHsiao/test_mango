@@ -1,11 +1,29 @@
 class HomeController < ApplicationController
   layout 'home'
+  before_action :get_user
 
+  def get_user
+
+  end
+
+  def user_index
+
+
+    # user level
+    # 1 admin
+
+    if current_user.present? && current_user.level.present?
+      if current_user.level.equal?('1')
+
+      end
+    else
+      render :wait_enable_account
+      return
+    end
+  end
 
 
   def test
-
-
   end
 
 

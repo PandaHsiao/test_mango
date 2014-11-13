@@ -1,0 +1,31 @@
+
+<div class="div_table" style="margin-top: 50px">
+
+  <div class="div_tr">
+    <div class="div_td"> 序號 </div>  |
+    <div class="div_td"> 會員名稱 </div>  |
+    <div class="div_td"> 帳號（E-Mail） </div> |
+    <div class="div_td"> </div>
+  </div>
+
+
+  <% @all_user.each do |x, i| %>
+
+      <div class="div_tr">
+        <div class="div_td"> <%= i %> </div>  |
+        <div class="div_td"> <%= x.name %> </div>  |
+        <div class="div_td"> <%= x.email %> </div> |
+        <div class="div_td"> <input type="button" class="btn_enable" value="enable" data-id="<%= x.object_id %>"> </div>
+      </div>
+
+  <% end %>
+
+</div>
+
+<script>
+
+  $(".btn_enable").click(function(){
+
+     alert($(this).data('id'));
+  });
+</script>
