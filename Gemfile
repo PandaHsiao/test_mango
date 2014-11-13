@@ -15,7 +15,7 @@ gem 'rails_12factor', group: :production
 
 gem 'devise'
 
-ruby '2.0.0'
+#ruby '2.0.0'
 
 # MongoDb use
 gem 'mongoid', '~> 4.0.0.beta1', github: 'mongoid/mongoid'
