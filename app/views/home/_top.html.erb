@@ -1,23 +1,6 @@
 <div id="top">
   <div id="top_right">
 
-    <% if user_signed_in? %>
-        <a href=""><%= t :notice %></a>
-        <a href=""><%= t :account %></a>
-
-        <a href="/sessions/destroy"><%= t :sign_out %></a>
-    <% elsi %>
-        <a href="/sessions/login"><%= t :sign_in %></a>
-        <a href="/registrations/register"><%= t :register %></a>
-    <% end %>
-
-    <a href=""><%= t :about_us %></a>
-
-
-
-    <% if current_user.present? %>
-        <%= current_user.name %>
-    <% end %>
 
   </div>
 
