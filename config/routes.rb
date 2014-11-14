@@ -79,13 +79,13 @@ TestMongo::Application.routes.draw do
 
   #======================================
 
-  #get 'yoolyooly/index'
-  #get 'yoolyooly/signin'
-  #get 'yoolyooly/signup'
-  #get 'yoolyooly/signup_complete'
-  #
-  #get 'yoolyooly/scratch'
-  #get 'yoolyooly/gift'
-  #get 'yoolyooly/store_info'
+  get 'yoolyooly/index'
+  get 'yoolyooly/signin'
+  get 'yoolyooly/signup'
+  get 'yoolyooly/signup_complete'
+
+  get 'yoolyooly/scratch'
+  get 'yoolyooly/gift'
+  get 'yoolyooly/store_info'
 
 end
