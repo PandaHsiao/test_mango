@@ -1,25 +1,25 @@
 TestMongo::Application.routes.draw do
 
-  devise_for :users , :controllers => { :omniauth_callbacks => "omniauth_callbacks", confirmations: 'confirmations', :registrations => 'registrations', :passwords => 'passwords' }
-
-  devise_scope :user do
-    match 'registrations/register' => 'registrations#register',               :via => 'get',  :as => 'register'
-    match 'registrations/register_create' => 'registrations#register_create', :via => 'post', :as => 'register_create'
-    match 'registrations/account_edit' => 'registrations#account_edit',       :via => 'get',  :as => 'account_edit'
-
-    match 'sessions/login' => 'sessions#login',                               :via => 'get',  :as => 'session_login'
-    match 'sessions/create' => 'sessions#create',                             :via => 'post', :as => 'session_create'
-
-
-    match 'sessions/destroy' => 'sessions#destroy',                           :via => 'get',  :as => 'session_user_destroy'
-
-
-    match 'password/set_new_password' => 'passwords#set_new_password',        :via => 'get',  :as => 'set_new_password'
-  end
-
-  root :to => 'home#user_index',                           :as => 'home'
-
-  get 'home/account_list'
+  #devise_for :users , :controllers => { :omniauth_callbacks => "omniauth_callbacks", confirmations: 'confirmations', :registrations => 'registrations', :passwords => 'passwords' }
+  #
+  #devise_scope :user do
+  #  match 'registrations/register' => 'registrations#register',               :via => 'get',  :as => 'register'
+  #  match 'registrations/register_create' => 'registrations#register_create', :via => 'post', :as => 'register_create'
+  #  match 'registrations/account_edit' => 'registrations#account_edit',       :via => 'get',  :as => 'account_edit'
+  #
+  #  match 'sessions/login' => 'sessions#login',                               :via => 'get',  :as => 'session_login'
+  #  match 'sessions/create' => 'sessions#create',                             :via => 'post', :as => 'session_create'
+  #
+  #
+  #  match 'sessions/destroy' => 'sessions#destroy',                           :via => 'get',  :as => 'session_user_destroy'
+  #
+  #
+  #  match 'password/set_new_password' => 'passwords#set_new_password',        :via => 'get',  :as => 'set_new_password'
+  #end
+  #
+  #root :to => 'home#user_index',                           :as => 'home'
+  #
+  #get 'home/account_list'
 
 
 
@@ -56,7 +56,7 @@ TestMongo::Application.routes.draw do
   get  'home/test_category'
 
   #= Home ======================================
-  #root :to => 'home#index'
+  root :to => 'home#index'
   get  'home/index'
 
   get  'home/new_category'
