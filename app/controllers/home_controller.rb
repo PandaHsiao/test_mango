@@ -12,14 +12,14 @@ class HomeController < ApplicationController
     # user level
     # 1 admin
 
-    if current_user.present? && current_user.level.present?
-      if current_user.level.equal?('1')
-
-      end
-    else
-      render :wait_enable_account
-      return
-    end
+    #if current_user.present? && current_user.level.present?
+    #  if current_user.level.equal?('1')
+    #
+    #  end
+    #else
+    #  render :wait_enable_account
+    #  return
+    #end
   end
 
 
