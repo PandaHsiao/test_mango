@@ -4,6 +4,7 @@ class RegistrationsController < Devise::RegistrationsController
   # GET ==== Function: show register view
   # =========================================================================
   def register
+    cc = 0
   end
 
   # POST === Function: create user

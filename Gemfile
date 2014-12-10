@@ -1,5 +1,14 @@
 source 'https://rubygems.org'
 
+# omniauth
+gem 'omniauth'
+
+# omniauth facebook
+gem 'omniauth-facebook'
+
+# omniauth-google-oauth2
+gem 'omniauth-google-oauth2'
+
 # jquery-ui-rails
 gem 'jquery-ui-rails', '~> 4.2.1'
 

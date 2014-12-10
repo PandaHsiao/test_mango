@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= stylesheet_link_tag    'registrations', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'registrations', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div class="container">
+  <% if alert %>
+      <script type="text/javascript">alert("<%= alert %>");</script>
+  <% end %>
+  <div class="row" style="margin: 35px 0">
+    <%= yield %>
+  </div>
+</div>
+
+
+
+</body>
+</html>

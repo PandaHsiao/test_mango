@@ -25,5 +25,10 @@ TestMongo::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  config.action_controller.asset_host = "http://localhost:3000"
+  config.action_mailer.asset_host = "http://localhost:3000"
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_options = {from: 'a17877yun@gmail.com'}
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end

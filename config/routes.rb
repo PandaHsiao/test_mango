@@ -15,9 +15,16 @@ TestMongo::Application.routes.draw do
 
 
     match 'password/set_new_password' => 'passwords#set_new_password',        :via => 'get',  :as => 'set_new_password'
+
+    match 'confirmation/resend_confirm_email' => 'confirmations#resend_confirm_email', :via => 'get',    :as => 'resend_confirm_email'
+
+    match '/users/auth/:provider' => 'omniauth_callbacks#passthru' ,             :via => 'get'
+
+    get   'restaurant' => 'restaurant_manage#restaurant', :as => 'confirmation_getting_started'
+
   end
 
-  root :to => 'home#user_index',                           :as => 'home'
+  root :to => 'home#index',                           :as => 'home'
 
   get 'home/account_list'
 

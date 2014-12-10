@@ -6,13 +6,10 @@
         <a href=""><%= t :account %></a>
 
         <a href="/sessions/destroy"><%= t :sign_out %></a>
-    <% elsi %>
+    <% else %>
         <a href="/sessions/login"><%= t :sign_in %></a>
         <a href="/registrations/register"><%= t :register %></a>
     <% end %>
-
-    <a href=""><%= t :about_us %></a>
-
 
 
     <% if current_user.present? %>
@@ -22,6 +19,6 @@
   </div>
 
   <div id="top_left">
-    <img id="logo" src="/assets/logo.png">
+
   </div>
 </div>

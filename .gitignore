@@ -15,5 +15,7 @@
 /log/*.log
 /tmp
 
+/.idea/*
+
 #Gemfile.lock   
 #in heroku need it, publish to heroku and  continue ignore

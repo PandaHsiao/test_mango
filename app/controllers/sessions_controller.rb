@@ -35,6 +35,19 @@ class SessionsController < Devise::SessionsController
     end
 
     begin
+      if target_user.first.confirmation_token.length != 20
+        if user[:role] == '0'
+          flash.now[:alert] = '信箱尚未驗證!!'
+          self.resource = resource_class.new
+          render 'devise/sessions/restaurant_new'
+        elsif user[:role] == '1'
+          flash.now[:alert] = '信箱尚未驗證!!'
+          self.resource = resource_class.new
+          render 'devise/sessions/booker_new'
+        end
+        return
+      end
+
       self.resource = warden.authenticate(auth_options)  #warden.authenticate!(auth_options)
 
       if self.resource.blank?

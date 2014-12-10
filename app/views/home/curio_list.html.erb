@@ -131,7 +131,7 @@
             }
         });
 
-        alert('')
+
 
         $.ajax({
             url: "/home/query_curio_by_filter.json",
@@ -139,6 +139,7 @@
             data: {filter_data: json_array},
             cache: false,
             success: function (response) {
+                alert('查詢成功')
                 $("#curios").html(response.curios_view_string);
                 put_curios_array(response.curios_array);
             },
